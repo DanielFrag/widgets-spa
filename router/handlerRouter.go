@@ -2,62 +2,63 @@ package router
 
 import (
 	"net/http"
-	"github.com/DanielFrag/widgets-spa-rv/handler"
-    "github.com/gorilla/mux"
+
+	"github.com/DanielFrag/widgets-spa/handler"
+	"github.com/gorilla/mux"
 )
 
 type Route struct {
-    Name        string
-    Method      string
-    Pattern     string
+	Name        string
+	Method      string
+	Pattern     string
 	HandlerFunc http.HandlerFunc
-	ContentType	string
+	ContentType string
 }
 
-var openRoutes = []Route {
-	 Route {
-		Name: "Login",
-		Method: "POST",
-		Pattern: "/login",
+var openRoutes = []Route{
+	Route{
+		Name:        "Login",
+		Method:      "POST",
+		Pattern:     "/login",
 		HandlerFunc: Login,
 	},
 }
 
-var apiRoutes = []Route {
-	Route {
-		Name: "Users",
-		Method: "GET",
-		Pattern: "/users",
+var apiRoutes = []Route{
+	Route{
+		Name:        "GetUsers",
+		Method:      "GET",
+		Pattern:     "/users",
 		HandlerFunc: UserLogin,
 	},
-	Route {
-		Name: "UserByID",
-		Method: "GET",
-		Pattern: "/users/{id}",
+	Route{
+		Name:        "GetUserByID",
+		Method:      "GET",
+		Pattern:     "/users/{id}",
 		HandlerFunc: TokenCheckerMiddleware(),
 	},
-	Route {
-		Name: "Widgets",
-		Method: "GET",
-		Pattern: "/widgets",
+	Route{
+		Name:        "GetWidgets",
+		Method:      "GET",
+		Pattern:     "/widgets",
 		HandlerFunc: TokenCheckerMiddleware(),
 	},
-	Route {
-		Name: "WidgetsById",
-		Method: "GET",
-		Pattern: "/widgets/{id}",
+	Route{
+		Name:        "GetWidgetById",
+		Method:      "GET",
+		Pattern:     "/widgets/{id}",
 		HandlerFunc: TokenCheckerMiddleware(),
 	},
-	Route {
-		Name: "CreateWidgets",
-		Method: "POST",
-		Pattern: "/widgets",
+	Route{
+		Name:        "CreateWidgets",
+		Method:      "POST",
+		Pattern:     "/widgets",
 		HandlerFunc: TokenCheckerMiddleware(),
 	},
-	Route {
-		Name: "ChangeWidgets",
-		Method: "PUT",
-		Pattern: "/widgets/{id}",
+	Route{
+		Name:        "ChangeWidgets",
+		Method:      "PUT",
+		Pattern:     "/widgets/{id}",
 		HandlerFunc: TokenCheckerMiddleware(),
 	},
 }
@@ -74,8 +75,8 @@ func NewRouter() http.Handler {
 	for _, route := range apiRoutes {
 		router.
 			Methods(route.Method).
-            Path(route.Pattern).
-            Name(route.Name).
+			Path(route.Pattern).
+			Name(route.Name).
 			Handler(route.HandlerFunc)
 	}
 	return handler.CorsSetup(router)

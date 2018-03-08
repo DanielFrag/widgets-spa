@@ -2,12 +2,7 @@ package utils
 
 import (
 	"bytes"
-	//"encoding/binary"
 	"encoding/json"
-	//"errors"
-	//"math"
-	//"math/rand"
-	//"time"
 )
 
 //FormatJSON format the map[string]interface{} to json
