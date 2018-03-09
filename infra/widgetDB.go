@@ -38,8 +38,8 @@ func (w *WidgetMGO) UpdateWidget(widgetID string) error {
 	return nil
 }
 
-func GetWidgetDB() WidgetMGO {
-	return WidgetMGO {
+func GetWidgetDB() *WidgetMGO {
+	return &WidgetMGO {
 		session: getSession(),
 	}
 }

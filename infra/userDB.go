@@ -30,8 +30,8 @@ func (u *UserMGO) GetUserByID(userID string) (model.User, error) {
 	return user, err
 }
 
-func GetUserDB() UserMGO {
-	return UserMGO {
+func GetUserDB() *UserMGO {
+	return &UserMGO {
 		session: getSession(),
 	}
 }
