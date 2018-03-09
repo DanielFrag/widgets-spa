@@ -10,12 +10,15 @@ type WidgetMGO struct {
 	session *mgo.Session
 }
 
-func (w *WidgetMGO) CreateWidget(widget model.Widget) (string, error) {
+func (w *WidgetMGO) CreateWidget(widget model.Widget) error {
+	w.session = getSession()
 	defer w.session.Close()
-	return "", nil
+	widgetCollection := w.session.DB(getDbName()).C("Widget")
+	return widgetCollection.Insert(widget)
 }
 
 func (w *WidgetMGO) GetWidgets() ([]model.Widget, error) {
+	w.session = getSession()
 	defer w.session.Close()
 	widgetCollection := w.session.DB(getDbName()).C("Widget")
 	var widget []model.Widget
@@ -24,6 +27,7 @@ func (w *WidgetMGO) GetWidgets() ([]model.Widget, error) {
 }
 
 func (w *WidgetMGO) GetWidgetByID(widgetID string) (model.Widget, error) {
+	w.session = getSession()
 	defer w.session.Close()
 	widgetCollection := w.session.DB(getDbName()).C("Widget")
 	var widget model.Widget
@@ -33,13 +37,21 @@ func (w *WidgetMGO) GetWidgetByID(widgetID string) (model.Widget, error) {
 	return widget, err
 }
 
-func (w *WidgetMGO) UpdateWidget(widgetID string) error {
+func (w *WidgetMGO) UpdateWidget(widgetID string, widgetData map[string]interface{}) error {
+	w.session = getSession()
 	defer w.session.Close()
-	return nil
+	widgetCollection := w.session.DB(getDbName()).C("Widget")
+	changes := make(bson.M)
+	for key, value := range widgetData {
+		changes[key] = value
+	}
+	return widgetCollection.Update(bson.M {
+		"_id": bson.ObjectIdHex(widgetID),
+	}, bson.M {
+		"$set": changes,
+	})
 }
 
 func GetWidgetDB() *WidgetMGO {
-	return &WidgetMGO {
-		session: getSession(),
-	}
+	return &WidgetMGO {}
 }

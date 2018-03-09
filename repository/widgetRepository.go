@@ -6,7 +6,7 @@ import (
 )
 
 type WidgetRepository interface {
-	CreateWidget(model.Widget) (string, error)
+	CreateWidget(model.Widget) error
 	GetWidgets() ([]model.Widget, error)
 	GetWidgetByID(string) (model.Widget, error)
 	UpdateWidget(string) error

@@ -25,7 +25,7 @@ func StartDB() {
 	}
 	ds.dbName = os.Getenv("DB_NAME")
 	if ds.dbName == "" {
-		ds.dbName = "widgets-spa"
+		ds.dbName = "widgets-spa-rv"
 	}
 	if err != nil {
 		panic(err)
@@ -37,11 +37,12 @@ func StopDB() {
 	ds.session.Close()
 }
 
-//GetSession return the current DB session
+//getSession return the current DB session
 func getSession() *mgo.Session {
 	return ds.session.Clone()
 }
 
+//getDbName return the DB name
 func getDbName() string {
 	return ds.dbName
 }
