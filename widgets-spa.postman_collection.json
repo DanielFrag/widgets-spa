@@ -1,0 +1,408 @@
+{
+	"variables": [],
+	"info": {
+		"name": "widgets-spa",
+		"_postman_id": "c2c6624f-7884-3c28-03d0-d0d5ee644da7",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/users",
+			"request": {
+				"url": "http://spa.tglrw.com:4000/users",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": [
+				{
+					"id": "43ac3b37-35ad-4ca7-ab2c-a89847f166ed",
+					"name": "/users",
+					"originalRequest": {
+						"url": "http://spa.tglrw.com:4000/users",
+						"method": "GET",
+						"header": [],
+						"body": {}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "access-control-allow-methods",
+							"key": "access-control-allow-methods",
+							"value": "GET,POST,PUT",
+							"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "*",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "connection",
+							"key": "connection",
+							"value": "keep-alive",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "473",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Tue, 06 Mar 2018 15:12:10 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "vary",
+							"key": "vary",
+							"value": "Accept-Encoding",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"name": "x-powered-by",
+							"key": "x-powered-by",
+							"value": "koa",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						},
+						{
+							"name": "x-response-time",
+							"key": "x-response-time",
+							"value": "0ms",
+							"description": "Custom header"
+						}
+					],
+					"cookie": [],
+					"responseTime": 368,
+					"body": "[{\"name\":\"Colin\",\"id\":1,\"gravatar\":\"http://www.gravatar.com/avatar/a51972ea936bc3b841350caef34ea47e?s=64&d=monsterid\"},{\"name\":\"Kyle\",\"id\":2,\"gravatar\":\"http://www.gravatar.com/avatar/432f3e353c689fc37af86ae861d934f9?s=64&d=monsterid\"},{\"name\":\"Thomas\",\"id\":3,\"gravatar\":\"http://www.gravatar.com/avatar/48009c6a27d25ef0ea03f985d1f186b0?s=64&d=monsterid\"},{\"name\":\"James\",\"id\":4,\"gravatar\":\"http://www.gravatar.com/avatar/9372f138140c8578c82bbc77b2eca602?s=64&d=monsterid\"}]"
+				}
+			]
+		},
+		{
+			"name": "/users/:id",
+			"request": {
+				"url": "http://spa.tglrw.com:4000/users/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/widgets",
+			"request": {
+				"url": "http://spa.tglrw.com:4000/widgets",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": [
+				{
+					"id": "7a2a5706-7ee0-42fc-b666-9d5be43edfbf",
+					"name": "/widgets",
+					"originalRequest": {
+						"url": "http://spa.tglrw.com:4000/widgets",
+						"method": "GET",
+						"header": [],
+						"body": {}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "access-control-allow-methods",
+							"key": "access-control-allow-methods",
+							"value": "GET,POST,PUT",
+							"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "*",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "connection",
+							"key": "connection",
+							"value": "keep-alive",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"name": "content-encoding",
+							"key": "content-encoding",
+							"value": "gzip",
+							"description": "The type of encoding used on the data."
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Tue, 06 Mar 2018 16:40:53 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "transfer-encoding",
+							"key": "transfer-encoding",
+							"value": "chunked",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"name": "vary",
+							"key": "vary",
+							"value": "Accept-Encoding",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"name": "x-powered-by",
+							"key": "x-powered-by",
+							"value": "koa",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						},
+						{
+							"name": "x-response-time",
+							"key": "x-response-time",
+							"value": "0ms",
+							"description": "Custom header"
+						}
+					],
+					"cookie": [],
+					"responseTime": 420,
+					"body": "[{\"id\":1,\"name\":\"Losenoidenbdsfkv\",\"color\":\"red\",\"price\":\"9.00\",\"inventory\":100,\"melts\":true},{\"id\":2,\"name\":\"Rowlow\",\"color\":\"red\",\"price\":\"3.00\",\"inventory\":7,\"melts\":true},{\"id\":3,\"name\":\"Printure\",\"color\":\"green\",\"price\":\"5.55\",\"inventory\":18,\"melts\":false},{\"id\":4,\"name\":\"Claster\",\"color\":\"off-white\",\"price\":\"12.56\",\"inventory\":9,\"melts\":true},{\"id\":5,\"name\":\"Pepelexa hi\",\"color\":\"purple\",\"price\":\"0.99\",\"inventory\":0,\"melts\":true},{\"id\":6,\"name\":\"Dropellet\",\"color\":\"speckled\",\"price\":\"16.00\",\"inventory\":99,\"melts\":true},{\"id\":7,\"name\":\"Jeebus\",\"color\":\"depends on the viewing angle\",\"price\":\"18.11\",\"inventory\":36,\"melts\":true},{\"id\":8,\"name\":\"Nodile\",\"color\":\"red\",\"price\":\"50.00\",\"inventory\":20,\"melts\":true},{\"id\":9,\"name\":\"Kaloobon\",\"color\":\"white\",\"price\":\"8.00\",\"inventory\":40,\"melts\":true},{\"id\":10,\"name\":\"Bioyino\",\"color\":\"turtle-shell\",\"price\":\"90.12\",\"inventory\":3,\"melts\":true},{\"id\":11,\"name\":\"Dizoolexa\",\"color\":\"magenta\",\"price\":\"67.23\",\"inventory\":976,\"melts\":false},{\"id\":12,\"name\":\"Skippy\",\"color\":\"green\",\"price\":\"0.01\",\"inventory\":404,\"melts\":true},{\"id\":13,\"name\":\"what\",\"color\":\"black\",\"price\":\"50.00\",\"inventory\":4,\"melts\":true},{\"id\":14,\"name\":\"My id is actually 333\",\"color\":\"purple\",\"price\":\"600.00\",\"inventory\":900,\"melts\":true},{\"id\":15,\"name\":\"Test\",\"color\":\"blue\",\"price\":\"7.77\",\"inventory\":13,\"melts\":true},{\"id\":16,\"name\":\"Testing\",\"color\":\"red\",\"price\":\"4.00\",\"inventory\":7,\"melts\":true},{\"id\":17,\"name\":\"Testing\",\"color\":\"test\",\"price\":\"4.00\",\"inventory\":7,\"melts\":true},{\"id\":18,\"name\":\"Testing\",\"color\":\"test\",\"price\":\"4.00\",\"inventory\":7,\"melts\":true},{\"id\":19,\"name\":\"Testing\",\"color\":\"test\",\"price\":\"NaN\",\"inventory\":7,\"melts\":true},{\"id\":20,\"name\":\"Testing\",\"color\":\"test\",\"price\":\"NaN\",\"inventory\":7,\"melts\":true},{\"id\":21,\"name\":\"Testing\",\"color\":\"test\",\"price\":\"NaN\",\"inventory\":7,\"melts\":true},{\"id\":22,\"name\":\"Testing\",\"color\":\"test\",\"price\":\"2.88\",\"inventory\":7,\"melts\":true},{\"id\":23,\"name\":\"Testing\",\"color\":\"test\",\"price\":\"1.00\",\"inventory\":7,\"melts\":true},{\"id\":24,\"name\":\"Testing\",\"color\":\"test\",\"price\":\"1.00\",\"inventory\":7,\"melts\":true},{\"id\":25,\"name\":\"Testing\",\"color\":\"test\",\"price\":\"1.00\",\"inventory\":null,\"melts\":true},{\"id\":26,\"name\":\"Testing\",\"color\":\"test\",\"price\":\"1.00\",\"inventory\":null,\"melts\":true},{\"id\":27,\"name\":\"Testing\",\"color\":\"test\",\"price\":\"1.00\",\"inventory\":52,\"melts\":true},{\"id\":28,\"name\":\"Testing\",\"color\":\"test\",\"price\":\"1.00\",\"inventory\":52,\"melts\":true},{\"id\":29,\"name\":\"Testing\",\"color\":\"test\",\"price\":\"6.75\",\"inventory\":52,\"melts\":true},{\"id\":30,\"name\":\"Losenoid\",\"color\":\"blue\",\"price\":\"9.99\",\"inventory\":51,\"melts\":true},{\"id\":31,\"name\":\"testing 123\",\"color\":\"red\",\"price\":\"123.00\",\"inventory\":123,\"melts\":true},{\"id\":32,\"name\":\"xyz\",\"color\":\"red\",\"price\":\"123.00\",\"inventory\":0,\"melts\":true},{\"id\":33,\"name\":\"test 123\",\"color\":\"red\",\"price\":\"123.00\",\"inventory\":1,\"melts\":true},{\"id\":34,\"name\":\"test 123\",\"color\":\"red\",\"price\":\"123.00\",\"inventory\":null,\"melts\":true},{\"id\":35,\"name\":\"test 123\",\"color\":\"red\",\"price\":\"NaN\",\"inventory\":null,\"melts\":true},{\"id\":36,\"name\":\"testing 123\",\"color\":\"red\",\"price\":\"123.00\",\"inventory\":1,\"melts\":true},{\"id\":37,\"name\":\"testing 123\",\"color\":\"purple\",\"price\":\"123.00\",\"inventory\":123,\"melts\":true},{\"id\":38,\"name\":\"testing 321\",\"color\":\"blue\",\"price\":\"321.00\",\"inventory\":111,\"melts\":true},{\"id\":39,\"name\":\"testing 123\",\"color\":\"black\",\"price\":\"111.00\",\"inventory\":111,\"melts\":true},{\"id\":40,\"name\":\"xxy\",\"color\":\"purple\",\"price\":\"123123.00\",\"inventory\":555,\"melts\":true},{\"id\":41,\"name\":\"test\",\"color\":\"turtle-shell\",\"price\":\"123.00\",\"inventory\":111,\"melts\":true},{\"id\":42,\"name\":\"new widget\",\"color\":\"blue\",\"price\":\"111.00\",\"inventory\":123,\"melts\":true},{\"id\":43,\"name\":\"Tester\",\"color\":\"magenta\",\"price\":\"10.00\",\"inventory\":null,\"melts\":true},{\"id\":44,\"name\":\"Quin Testing updated\",\"color\":\"Blue\",\"price\":\"100.00\",\"inventory\":99,\"melts\":true},{\"id\":45,\"name\":\"Losenoid\",\"color\":\"blue\",\"price\":\"9.99\",\"inventory\":51,\"melts\":true},{\"id\":46,\"name\":\"Losenoid\",\"color\":\"blue\",\"price\":\"9.99\",\"inventory\":51,\"melts\":true},{\"id\":47,\"name\":\"Losenoid\",\"color\":\"blue\",\"price\":\"9.99\",\"inventory\":51,\"melts\":true},{\"id\":48,\"name\":\"Losenoid\",\"color\":\"blue\",\"price\":\"9.99\",\"inventory\":51,\"melts\":true},{\"id\":49,\"name\":\"Losenoid\",\"color\":\"blue\",\"price\":\"9.99\",\"inventory\":51,\"melts\":true},{\"id\":50,\"name\":\"Losenoid\",\"color\":\"blue\",\"price\":\"9.99\",\"inventory\":51,\"melts\":true},{\"id\":51,\"name\":\"Losenoid\",\"color\":\"blue\",\"price\":\"9.99\",\"inventory\":51,\"melts\":true},{\"id\":52,\"name\":\"Losenoid\",\"color\":\"blue\",\"price\":\"9.99\",\"inventory\":51,\"melts\":true},{\"id\":53,\"name\":\"Losenoid\",\"color\":\"blue\",\"price\":\"9.99\",\"inventory\":51,\"melts\":true},{\"id\":54,\"name\":\"Losenoid\",\"color\":\"blue\",\"price\":\"9.99\",\"inventory\":51,\"melts\":true},{\"id\":55,\"name\":\"Quin Testing updated2\",\"color\":\"Blue\",\"price\":\"100.00\",\"inventory\":99,\"melts\":true},{\"id\":56,\"name\":\"Quin\",\"color\":\"glue\",\"price\":\"100.00\",\"inventory\":99,\"melts\":true},{\"id\":57,\"name\":\"Quin2\",\"color\":\"glue\",\"price\":\"100.00\",\"inventory\":99,\"melts\":true},{\"id\":58,\"name\":\"chocolate final\",\"color\":\"Brown\",\"price\":\"10.00\",\"inventory\":1000,\"melts\":true},{\"id\":59,\"name\":\"test1\",\"color\":\"Yellow\",\"price\":\"1000.00\",\"inventory\":999,\"melts\":true},{\"id\":60,\"name\":\"test1234\",\"color\":\"red\",\"price\":\"9.00\",\"inventory\":1211,\"melts\":true}]"
+				}
+			]
+		},
+		{
+			"name": "/widgets/:id",
+			"request": {
+				"url": "http://spa.tglrw.com:4000/widgets/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": [
+				{
+					"id": "bd8629c5-714b-408e-8dda-930de42f0758",
+					"name": "/widgets/:id",
+					"originalRequest": {
+						"url": "http://spa.tglrw.com:4000/widgets/1",
+						"method": "GET",
+						"header": [],
+						"body": {}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "access-control-allow-methods",
+							"key": "access-control-allow-methods",
+							"value": "GET,POST,PUT",
+							"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "*",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "connection",
+							"key": "connection",
+							"value": "keep-alive",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "92",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Tue, 06 Mar 2018 15:16:39 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "vary",
+							"key": "vary",
+							"value": "Accept-Encoding",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"name": "x-powered-by",
+							"key": "x-powered-by",
+							"value": "koa",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						},
+						{
+							"name": "x-response-time",
+							"key": "x-response-time",
+							"value": "0ms",
+							"description": "Custom header"
+						}
+					],
+					"cookie": [],
+					"responseTime": 188,
+					"body": "{\"id\":1,\"name\":\"Losenoidenbdsfkv\",\"color\":\"red\",\"price\":\"9.00\",\"inventory\":100,\"melts\":true}"
+				}
+			]
+		},
+		{
+			"name": "POST /widgets",
+			"request": {
+				"url": "http://spa.tglrw.com:4000/widgets",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": [
+				{
+					"id": "c8c882a7-2f71-4ad3-8449-f8a932e9ea8e",
+					"name": "POST /widgets",
+					"originalRequest": {
+						"url": "http://spa.tglrw.com:4000/widgets",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"widgetDmF\",\n    \"color\": \"red\",\n    \"price\": \"9.00\",\n    \"inventory\": 100,\n    \"melts\": true\n}"
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plainText",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"name": "access-control-allow-methods",
+							"key": "access-control-allow-methods",
+							"value": "GET,POST,PUT",
+							"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "chrome-extension://fhbjgbiflinjbdggehcddcbncdddomop",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "connection",
+							"key": "connection",
+							"value": "keep-alive",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "6",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "text/plain; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Thu, 08 Mar 2018 16:01:39 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "vary",
+							"key": "vary",
+							"value": "Accept-Encoding",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"name": "x-powered-by",
+							"key": "x-powered-by",
+							"value": "koa",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						},
+						{
+							"name": "x-response-time",
+							"key": "x-response-time",
+							"value": "0ms",
+							"description": "Custom header"
+						}
+					],
+					"cookie": [],
+					"responseTime": 533,
+					"body": "added!"
+				}
+			]
+		},
+		{
+			"name": "PUT /widgets/:id",
+			"request": {
+				"url": "http://spa.tglrw.com:4000/widgets/61",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n    \"color\": \"blue\",\n    \"price\": \"10.00\",\n    \"inventory\": 99,\n    \"melts\": true\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
