@@ -5,12 +5,12 @@ import (
 )
 
 type HandlerFuncInjector struct {
-	dependecies []func(http.HandlerFunc) http.HandlerFunc
-	handler     http.HandlerFunc
+	Dependencies []func(http.HandlerFunc) http.HandlerFunc
+	Handler     http.HandlerFunc
 }
 
 func (hfi *HandlerFuncInjector) InjectDependencies() {
-	for _, d := range hfi.dependecies {
-		hfi.handler = d(hfi.handler)
+	for i := len(hfi.Dependencies) - 1; i >=0; i-- {
+		hfi.Handler = hfi.Dependencies[i](hfi.Handler)
 	}
 }

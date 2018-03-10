@@ -3,7 +3,6 @@ package utils
 import (
 	"net/http"
 	"net/http/httptest"
-	"log"
 	"testing"
 	"github.com/gorilla/context"
 )
@@ -26,8 +25,8 @@ func TestHandlerFuncInjector(t *testing.T) {
 		fB,
 	}
 	f := HandlerFuncInjector{
-		dependecies: fCollection,
-		handler: func (w http.ResponseWriter, r *http.Request) {},
+		Dependencies: fCollection,
+		Handler: func (w http.ResponseWriter, r *http.Request) {},
 	}
 	f.InjectDependencies()
 	req, reqError := http.NewRequest("GET", "/", nil)
@@ -35,12 +34,10 @@ func TestHandlerFuncInjector(t *testing.T) {
 		t.Error("Error to create the request: " + reqError.Error())
 	}
 	reqRecorder := httptest.NewRecorder()
-	f.handler.ServeHTTP(reqRecorder, req)
+	f.Handler.ServeHTTP(reqRecorder, req)
 	fAContext := context.Get(req, "fA")
 	fBContext := context.Get(req, "fB")
 	handlerContextData := context.GetAll(req)
-	log.Println(fAContext)
-	log.Println(fBContext)
 	if fAContext == nil || fBContext == nil || len(handlerContextData) != 2 {
 		t.Error("Context not seted")
 	}
