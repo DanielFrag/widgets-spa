@@ -100,7 +100,7 @@ func TestWidgetMGO(t *testing.T) {
 		wrongID := bson.NewObjectIdWithTime(time.Now())
 		_, wResultError := widgetMGO.GetWidgetByID(wrongID.Hex())
 		if wResultError == nil {
-			t.Error("Can't recover a register with an unexisted register")
+			t.Error("Can't recover an unexisted register")
 		}
 	})
 	t.Run("UpdateWidget", func(t *testing.T) {
@@ -115,7 +115,7 @@ func TestWidgetMGO(t *testing.T) {
 		}
 		wResult, wResultError := widgetMGO.GetWidgetByID(widget.ID.Hex())
 		if wResultError != nil {
-			t.Error("Can't find the first document: " + wResultError.Error())
+			t.Error("Can't find the widget document: " + wResultError.Error())
 		}
 		if wResult.Name != "foo" || wResult.Color != "bar" {
 			t.Error("Error retrieving users")
