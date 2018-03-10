@@ -9,7 +9,7 @@ type WidgetRepository interface {
 	CreateWidget(model.Widget) error
 	GetWidgets() ([]model.Widget, error)
 	GetWidgetByID(string) (model.Widget, error)
-	UpdateWidget(string) error
+	UpdateWidget(string, map[string]interface{}) error
 }
 
 func GetWidgetRepository() WidgetRepository {

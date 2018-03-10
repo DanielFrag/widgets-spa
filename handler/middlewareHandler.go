@@ -22,6 +22,7 @@ func UserRepositoryInjector(next http.HandlerFunc) http.HandlerFunc {
 
 func WidgetRepositoryInjector(next http.HandlerFunc) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		context.Set(r, "WidgetRepository", repository.GetWidgetRepository())
 		next(w, r)
 	})
 }
