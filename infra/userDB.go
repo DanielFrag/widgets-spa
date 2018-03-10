@@ -21,7 +21,7 @@ func (u *UserMGO) GetUsers() ([]model.User, error) {
 	return users, err
 }
 
-//GetUserByID return a single user based on his ID
+//GetUserByID return a single user based on its ID
 func (u *UserMGO) GetUserByID(userID string) (model.User, error) {
 	u.session = getSession()
 	defer u.session.Close()
@@ -31,7 +31,7 @@ func (u *UserMGO) GetUserByID(userID string) (model.User, error) {
 		Find(bson.M{
 			"_id": bson.ObjectIdHex(userID),
 		}).
-		All(&user)
+		One(&user)
 	return user, err
 }
 

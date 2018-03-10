@@ -14,7 +14,7 @@ type dataStore struct {
 var ds dataStore
 
 //StartDB initialize DB connection
-func StartDB() {
+func StartDB() error {
 	var err error
 	mongoURL := os.Getenv("MONGODB_URI")
 	if mongoURL == "" {
@@ -27,9 +27,7 @@ func StartDB() {
 	if ds.dbName == "" {
 		ds.dbName = "widgets-spa-rv"
 	}
-	if err != nil {
-		panic(err)
-	}
+	return err
 }
 
 //StopDB close DB session

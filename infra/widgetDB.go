@@ -6,10 +6,12 @@ import (
 	"github.com/DanielFrag/widgets-spa-rv/model"
 )
 
+//WidgetMGO wrap the session to access widget data
 type WidgetMGO struct {
 	session *mgo.Session
 }
 
+//CreateWidget insert a new widget in DB
 func (w *WidgetMGO) CreateWidget(widget model.Widget) error {
 	w.session = getSession()
 	defer w.session.Close()
@@ -17,6 +19,7 @@ func (w *WidgetMGO) CreateWidget(widget model.Widget) error {
 	return widgetCollection.Insert(widget)
 }
 
+//GetWidgets return all widgets
 func (w *WidgetMGO) GetWidgets() ([]model.Widget, error) {
 	w.session = getSession()
 	defer w.session.Close()
@@ -26,6 +29,7 @@ func (w *WidgetMGO) GetWidgets() ([]model.Widget, error) {
 	return widget, err
 }
 
+//GetWidgetByID return a single widget based on its ID
 func (w *WidgetMGO) GetWidgetByID(widgetID string) (model.Widget, error) {
 	w.session = getSession()
 	defer w.session.Close()
@@ -37,6 +41,7 @@ func (w *WidgetMGO) GetWidgetByID(widgetID string) (model.Widget, error) {
 	return widget, err
 }
 
+//UpdateWidget set new values for an existed widget
 func (w *WidgetMGO) UpdateWidget(widgetID string, widgetData map[string]interface{}) error {
 	w.session = getSession()
 	defer w.session.Close()
@@ -52,6 +57,7 @@ func (w *WidgetMGO) UpdateWidget(widgetID string, widgetData map[string]interfac
 	})
 }
 
+//GetWidgetDB return the object to access the widget data
 func GetWidgetDB() *WidgetMGO {
 	return &WidgetMGO {}
 }
