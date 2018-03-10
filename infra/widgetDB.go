@@ -37,7 +37,7 @@ func (w *WidgetMGO) GetWidgetByID(widgetID string) (model.Widget, error) {
 	var widget model.Widget
 	err := widgetCollection.Find(bson.M{
 		"_id": bson.ObjectIdHex(widgetID),
-		}).All(&widget)
+		}).One(&widget)
 	return widget, err
 }
 
