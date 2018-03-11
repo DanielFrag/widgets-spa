@@ -50,13 +50,13 @@ var apiRoutes = []Route{
 		HandlerFunc: TokenCheckerMiddleware(),
 	},
 	Route{
-		Name:        "CreateWidgets",
+		Name:        "CreateWidget",
 		Method:      "POST",
 		Pattern:     "/widgets",
 		HandlerFunc: TokenCheckerMiddleware(),
 	},
 	Route{
-		Name:        "ChangeWidgets",
+		Name:        "ChangeWidget",
 		Method:      "PUT",
 		Pattern:     "/widgets/{id}",
 		HandlerFunc: TokenCheckerMiddleware(),
@@ -67,17 +67,19 @@ func NewRouter() http.Handler {
 	router := mux.NewRouter().StrictSlash(true)
 	for _, route := range openRoutes {
 		router.
+			HandleFunc(route.Pattern, route.HandlerFunc).
 			Methods(route.Method).
-			Path(route.Pattern).
-			Name(route.Name).
-			Handler(route.HandlerFunc)
+			// Path(route.Pattern).
+			// Name(route.Name).
+			// Handler(route.HandlerFunc)
 	}
 	for _, route := range apiRoutes {
 		router.
+			HandleFunc(route.Pattern, route.HandlerFunc).
 			Methods(route.Method).
-			Path(route.Pattern).
-			Name(route.Name).
-			Handler(route.HandlerFunc)
+			// Path(route.Pattern).
+			// Name(route.Name).
+			// Handler(route.HandlerFunc)
 	}
 	return handler.CorsSetup(router)
 }

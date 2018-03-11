@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 )
 
-//FormatJSON format the map[string]interface{} to json
-func FormatJSON(m map[string]interface{}) []byte {
+//FormatJSON format the interface 'i' to json
+func FormatJSON(i interface{}) []byte {
 	b := new(bytes.Buffer)
-	json.NewEncoder(b).Encode(m)
+	json.NewEncoder(b).Encode(i)
 	return b.Bytes()
 }
