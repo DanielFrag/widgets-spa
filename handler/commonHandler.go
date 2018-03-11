@@ -24,9 +24,6 @@ func CorsSetup(next http.Handler) http.Handler {
 
 //RecoverFunc is used by a controller's defer statement. It will close the request's body, check for general errors and format an error response
 func recoverFunc(w http.ResponseWriter, r *http.Request) {
-	if r.Body != nil {
-		r.Body.Close()
-	}
 	recoverError := recover()
 	if recoverError != nil {
 		http.Error(w, fmt.Sprint("Error: ", recoverError), http.StatusInternalServerError)

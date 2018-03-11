@@ -32,19 +32,15 @@ func UserRepositoryInjector(next http.HandlerFunc) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		context.Set(r, "UserRepository", repository.GetUserRepository())
 		next(w, r)
+		return
 	})
 }
 
 func UserSessionChecker(next http.HandlerFunc) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		contextUserRepository := context.Get(r, "UserRepository")
-		if contextUserRepository == nil {
-			http.Error(w, "Can't access the context user repository", http.StatusInternalServerError)
-			return
-		}
-		userRepository, userRepositoryOk := contextUserRepository.(repository.UserRepository)
-		if !userRepositoryOk {
-			http.Error(w, "Can't access the user repository", http.StatusInternalServerError)
+		userRepository, userRepositoryError := extractUserRepository(r)
+		if userRepositoryError != nil {
+			http.Error(w, userRepositoryError.Error(), http.StatusInternalServerError)
 			return
 		}
 		tokenPayload := context.Get(r, "TokenPayload")
@@ -75,5 +71,6 @@ func WidgetRepositoryInjector(next http.HandlerFunc) http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		context.Set(r, "WidgetRepository", repository.GetWidgetRepository())
 		next(w, r)
+		return
 	})
 }
