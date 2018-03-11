@@ -24,6 +24,25 @@ func (u *UserDBMock) GetUsers() ([]model.User, error) {
 	return u.users, nil
 }
 
+func (u *UserDBMock) GetUserByLogin(login, pass string) (model.User, error) {
+	for i := range u.users {
+		if u.users[i].Login == login {
+			return u.users[i], nil
+		}
+	}
+	return model.User{}, errors.New("Can't find the requested user")
+}
+
+func (u *UserDBMock) UpdateUserSession(userID, session string) error {
+	for i := range u.users {
+		if u.users[i].ID.Hex() == userID {
+			u.users[i].Session = session
+			return nil
+		}
+	}
+	return errors.New("Can't find the requested user")
+}
+
 func (u *UserDBMock) InitializeUserDB() {
 	u.users = []model.User{
 		model.User{
