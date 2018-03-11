@@ -10,6 +10,6 @@ type Widget struct {
 	Name      string        `bson:"name" json:"name"`
 	Color     string        `bson:"color" json:"color"`
 	Price     string        `bson:"price" json:"price"`
-	Inventory uint64        `bson:"inventory" json:"inventory"`
+	Inventory int32			`bson:"inventory" json:"inventory"`
 	Melts     bool          `bson:"melts" json:"melts"`
 }

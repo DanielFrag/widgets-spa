@@ -20,9 +20,7 @@ func TokenCheckerMiddleware(next http.HandlerFunc) http.HandlerFunc {
 			http.Error(w, "Error reading access token: " + tokenError.Error(), http.StatusForbidden)
 			return
 		}
-		validatedToken, _ := utils.EncodeToken(payload)
 		context.Set(r, "TokenPayload", payload)
-		context.Set(r, "Token", validatedToken)
 		next(w, r)
 		return
 	})
@@ -48,17 +46,17 @@ func UserSessionChecker(next http.HandlerFunc) http.HandlerFunc {
 			http.Error(w, "Can't access the user's token payload", http.StatusInternalServerError)
 			return
 		}
-		userData, ok := tokenPayload.(map[string]string)
+		userData, ok := tokenPayload.(map[string]interface{})
 		if !ok {
 			http.Error(w, "Can't reconize the user's token payload", http.StatusInternalServerError)
 			return
 		}
-		user, userError := userRepository.GetUserByID(userData["userID"])
+		user, userError := userRepository.GetUserByID(userData["userID"].(string))
 		if userError != nil {
 			http.Error(w, "Can't find the requested user: " + userError.Error(), http.StatusUnauthorized)
 			return
 		}
-		if userData["userSession"] == "" || user.Session != userData["userSession"] {
+		if userData["userSession"] == nil || user.Session != userData["userSession"].(string) {
 			http.Error(w, "Invalid user session", http.StatusForbidden)
 			return
 		}

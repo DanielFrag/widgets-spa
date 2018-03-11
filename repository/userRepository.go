@@ -8,6 +8,8 @@ import (
 type UserRepository interface {
 	GetUsers() ([]model.User, error)
 	GetUserByID(string) (model.User, error)
+	GetUserByLogin(string, string) (model.User, error)
+	UpdateUserSession(string, string) error
 }
 
 func GetUserRepository() UserRepository {

@@ -34,7 +34,7 @@ func EncodeToken(payload interface{}) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"data": payload,
 		"iat":  time.Now().Unix(),
-		"exp":  time.Now().Add(time.Second * time.Duration(getTokenExpirationTime())).Unix(),
+		"exp":  time.Now().Add(time.Minute * time.Duration(getTokenExpirationTime())).Unix(),
 	})
 	return token.SignedString([]byte(getTokenSecret()))
 }
@@ -43,7 +43,7 @@ func getTokenExpirationTime() int64 {
 	if tokenExpirationTime == 0 {
 		tkExpTime := os.Getenv("TOKEN_EXPIRATION_TIME")
 		if tkExpTime == "" {
-			tkExpTime = "360"
+			tkExpTime = "60"
 		}
 		var strConvError error
 		tokenExpirationTime, strConvError = strconv.ParseInt(tkExpTime, 10, 64)

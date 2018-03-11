@@ -15,7 +15,7 @@ type UserMGO struct {
 func (u *UserMGO) GetUsers() ([]model.User, error) {
 	u.session = getSession()
 	defer u.session.Close()
-	usersCollection := u.session.DB(getDbName()).C("User")
+	usersCollection := u.session.DB(getDbName()).C("user")
 	var users []model.User
 	err := usersCollection.Find(bson.M{}).All(&users)
 	return users, err
@@ -25,7 +25,7 @@ func (u *UserMGO) GetUsers() ([]model.User, error) {
 func (u *UserMGO) GetUserByID(userID string) (model.User, error) {
 	u.session = getSession()
 	defer u.session.Close()
-	usersCollection := u.session.DB(getDbName()).C("User")
+	usersCollection := u.session.DB(getDbName()).C("user")
 	var user model.User
 	err := usersCollection.
 		Find(bson.M{
@@ -33,6 +33,35 @@ func (u *UserMGO) GetUserByID(userID string) (model.User, error) {
 		}).
 		One(&user)
 	return user, err
+}
+
+//GetUserByLogin return a single user based on its Login
+func (u *UserMGO) GetUserByLogin(userLogin, userPass string) (model.User, error) {
+	u.session = getSession()
+	defer u.session.Close()
+	usersCollection := u.session.DB(getDbName()).C("user")
+	var user []model.User
+	err := usersCollection.
+		Find(bson.M{
+			"login": userLogin,
+			//"password": userPass,
+		}).
+		All(&user)
+	return user[0], err
+}
+
+//UpdateUserSession set new values for an user session
+func (u *UserMGO) UpdateUserSession(userID, session string) error {
+	u.session = getSession()
+	defer u.session.Close()
+	usersCollection := u.session.DB(getDbName()).C("user")
+	return usersCollection.Update(bson.M {
+		"_id": bson.ObjectIdHex(userID),
+	}, bson.M {
+		"$set": bson.M{
+			"session": session,
+		},
+	})
 }
 
 //GetUserDB return the object to access the users data

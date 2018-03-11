@@ -15,7 +15,7 @@ type WidgetMGO struct {
 func (w *WidgetMGO) CreateWidget(widget model.Widget) error {
 	w.session = getSession()
 	defer w.session.Close()
-	widgetCollection := w.session.DB(getDbName()).C("Widget")
+	widgetCollection := w.session.DB(getDbName()).C("widget")
 	return widgetCollection.Insert(widget)
 }
 
@@ -23,7 +23,7 @@ func (w *WidgetMGO) CreateWidget(widget model.Widget) error {
 func (w *WidgetMGO) GetWidgets() ([]model.Widget, error) {
 	w.session = getSession()
 	defer w.session.Close()
-	widgetCollection := w.session.DB(getDbName()).C("Widget")
+	widgetCollection := w.session.DB(getDbName()).C("widget")
 	var widget []model.Widget
 	err := widgetCollection.Find(bson.M{}).All(&widget)
 	return widget, err
@@ -33,7 +33,7 @@ func (w *WidgetMGO) GetWidgets() ([]model.Widget, error) {
 func (w *WidgetMGO) GetWidgetByID(widgetID string) (model.Widget, error) {
 	w.session = getSession()
 	defer w.session.Close()
-	widgetCollection := w.session.DB(getDbName()).C("Widget")
+	widgetCollection := w.session.DB(getDbName()).C("widget")
 	var widget model.Widget
 	err := widgetCollection.Find(bson.M{
 		"_id": bson.ObjectIdHex(widgetID),
@@ -45,7 +45,7 @@ func (w *WidgetMGO) GetWidgetByID(widgetID string) (model.Widget, error) {
 func (w *WidgetMGO) UpdateWidget(widgetID string, widgetData map[string]interface{}) error {
 	w.session = getSession()
 	defer w.session.Close()
-	widgetCollection := w.session.DB(getDbName()).C("Widget")
+	widgetCollection := w.session.DB(getDbName()).C("widget")
 	changes := make(bson.M)
 	for key, value := range widgetData {
 		changes[key] = value
