@@ -9,13 +9,13 @@ import (
 )
 
 func TestCorsSetup(t *testing.T) {
-	fA := http.HandlerFunc(func (w http.ResponseWriter, r *http.Request) {})
+	fA := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {})
 	fB := CorsSetup(fA)
 	req, reqError := http.NewRequest("GET", "/", nil)
 	if reqError != nil {
 		t.Error("Error to create the request: " + reqError.Error())
 	}
-	req.Header["Origin"] = []string {"anyware"}
+	req.Header["Origin"] = []string{"anyware"}
 	reqRecorder := httptest.NewRecorder()
 	fB.ServeHTTP(reqRecorder, req)
 	fBHeader := reqRecorder.Header()

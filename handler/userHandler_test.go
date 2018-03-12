@@ -1,14 +1,15 @@
 package handler
 
 import (
-	"fmt"
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
-	"github.com/DanielFrag/widgets-spa-rv/utils"
+
 	"github.com/DanielFrag/widgets-spa-rv/model"
+	"github.com/DanielFrag/widgets-spa-rv/utils"
 	"github.com/gorilla/context"
 	"github.com/gorilla/mux"
 )
@@ -16,8 +17,8 @@ import (
 func TestGetUsers(t *testing.T) {
 	userMock := UserDBMock{}
 	userMock.InitializeUserDB()
-	dbInjector := func (next http.HandlerFunc) http.HandlerFunc {
-		return func (w http.ResponseWriter, r *http.Request) {
+	dbInjector := func(next http.HandlerFunc) http.HandlerFunc {
+		return func(w http.ResponseWriter, r *http.Request) {
 			context.Set(r, "UserRepository", &userMock)
 			next(w, r)
 			return
@@ -25,7 +26,7 @@ func TestGetUsers(t *testing.T) {
 	}
 	t.Run("GetAllUsers", func(t *testing.T) {
 		hfi := utils.HandlerFuncInjector{
-			Dependencies: []func (http.HandlerFunc) http.HandlerFunc {
+			Dependencies: []func(http.HandlerFunc) http.HandlerFunc{
 				dbInjector,
 			},
 			Handler: GetUsers,
@@ -53,13 +54,13 @@ func TestGetUsers(t *testing.T) {
 		users, _ := userMock.GetUsers()
 		userID := users[0].ID.Hex()
 		hfi := utils.HandlerFuncInjector{
-			Dependencies: []func (http.HandlerFunc) http.HandlerFunc {
+			Dependencies: []func(http.HandlerFunc) http.HandlerFunc{
 				dbInjector,
 			},
 			Handler: GetUserByID,
 		}
 		hfi.InjectDependencies()
-		req, reqError := http.NewRequest("GET", "/" + userID, nil)
+		req, reqError := http.NewRequest("GET", "/"+userID, nil)
 		if reqError != nil {
 			t.Error("Error to create the request: " + reqError.Error())
 		}
@@ -80,17 +81,17 @@ func TestGetUsers(t *testing.T) {
 			t.Error("Wrong user")
 		}
 	})
-	t.Run("UserLogin", func(t *testing.T) {
+	t.Run("ValidUserLogin", func(t *testing.T) {
 		users, _ := userMock.GetUsers()
 		hfi := utils.HandlerFuncInjector{
-			Dependencies: []func (http.HandlerFunc) http.HandlerFunc {
+			Dependencies: []func(http.HandlerFunc) http.HandlerFunc{
 				dbInjector,
 			},
 			Handler: UserLogin,
 		}
 		hfi.InjectDependencies()
 		jsonReader := bytes.NewReader(utils.FormatJSON(map[string]string{
-			"login": users[0].Login,
+			"login":    users[0].Login,
 			"password": users[0].Password,
 		}))
 		req, reqError := http.NewRequest("POST", "/", jsonReader)
@@ -108,6 +109,31 @@ func TestGetUsers(t *testing.T) {
 		json.Unmarshal(reqRecorder.Body.Bytes(), &m)
 		if m["token"] == "" {
 			t.Error("A token must be returned")
+		}
+	})
+	t.Run("InvalidUserLogin", func(t *testing.T) {
+		users, _ := userMock.GetUsers()
+		hfi := utils.HandlerFuncInjector{
+			Dependencies: []func(http.HandlerFunc) http.HandlerFunc{
+				dbInjector,
+			},
+			Handler: UserLogin,
+		}
+		hfi.InjectDependencies()
+		jsonReader := bytes.NewReader(utils.FormatJSON(map[string]string{
+			"login":    users[0].Login,
+			"password": users[0].Password + "invalid",
+		}))
+		req, reqError := http.NewRequest("POST", "/", jsonReader)
+		if reqError != nil {
+			t.Error("Error to create the request: " + reqError.Error())
+			return
+		}
+		reqRecorder := httptest.NewRecorder()
+		hfi.Handler.ServeHTTP(reqRecorder, req)
+		result := reqRecorder.Result()
+		if result.StatusCode != 404 {
+			t.Error(fmt.Sprintf("Wrong status code. Expected 404, got %v", result.StatusCode))
 		}
 	})
 }

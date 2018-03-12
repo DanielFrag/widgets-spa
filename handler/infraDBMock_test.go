@@ -1,10 +1,11 @@
 package handler
 
 import (
-	"time"
-	"gopkg.in/mgo.v2/bson"
 	"errors"
+	"time"
+
 	"github.com/DanielFrag/widgets-spa-rv/model"
+	"gopkg.in/mgo.v2/bson"
 )
 
 type UserDBMock struct {
@@ -26,7 +27,7 @@ func (u *UserDBMock) GetUsers() ([]model.User, error) {
 
 func (u *UserDBMock) GetUserByLogin(login, pass string) (model.User, error) {
 	for i := range u.users {
-		if u.users[i].Login == login {
+		if u.users[i].Login == login && u.users[i].Password == pass {
 			return u.users[i], nil
 		}
 	}
@@ -46,17 +47,17 @@ func (u *UserDBMock) UpdateUserSession(userID, session string) error {
 func (u *UserDBMock) InitializeUserDB() {
 	u.users = []model.User{
 		model.User{
-			ID: bson.NewObjectIdWithTime(time.Now()),
-			Login: "sunda",
+			ID:       bson.NewObjectIdWithTime(time.Now()),
+			Login:    "sunda",
 			Password: "adnus",
-			Session: "123",
+			Session:  "123",
 			Gravatar: "www.anyware.com.br/sunda",
 		},
 		model.User{
-			ID: bson.NewObjectIdWithTime(time.Now().Add(time.Second * 3)),
-			Login: "foo",
+			ID:       bson.NewObjectIdWithTime(time.Now().Add(time.Second * 3)),
+			Login:    "foo",
 			Password: "bar",
-			Session: "456",
+			Session:  "456",
 			Gravatar: "www.anyware.com.br/foo",
 		},
 	}

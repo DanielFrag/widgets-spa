@@ -1,9 +1,9 @@
 package infra
 
 import (
+	"github.com/DanielFrag/widgets-spa-rv/model"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"github.com/DanielFrag/widgets-spa-rv/model"
 )
 
 //UserMGO wrap the session to access user data
@@ -40,14 +40,14 @@ func (u *UserMGO) GetUserByLogin(userLogin, userPass string) (model.User, error)
 	u.session = getSession()
 	defer u.session.Close()
 	usersCollection := u.session.DB(getDbName()).C("user")
-	var user []model.User
+	var user model.User
 	err := usersCollection.
 		Find(bson.M{
-			"login": userLogin,
-			//"password": userPass,
+			"login":    userLogin,
+			"password": userPass,
 		}).
-		All(&user)
-	return user[0], err
+		One(&user)
+	return user, err
 }
 
 //UpdateUserSession set new values for an user session
@@ -55,9 +55,9 @@ func (u *UserMGO) UpdateUserSession(userID, session string) error {
 	u.session = getSession()
 	defer u.session.Close()
 	usersCollection := u.session.DB(getDbName()).C("user")
-	return usersCollection.Update(bson.M {
+	return usersCollection.Update(bson.M{
 		"_id": bson.ObjectIdHex(userID),
-	}, bson.M {
+	}, bson.M{
 		"$set": bson.M{
 			"session": session,
 		},
@@ -66,5 +66,5 @@ func (u *UserMGO) UpdateUserSession(userID, session string) error {
 
 //GetUserDB return the object to access the users data
 func GetUserDB() *UserMGO {
-	return &UserMGO {}
+	return &UserMGO{}
 }

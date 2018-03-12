@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"github.com/DanielFrag/widgets-spa-rv/model"
 	"github.com/DanielFrag/widgets-spa-rv/infra"
+	"github.com/DanielFrag/widgets-spa-rv/model"
 )
 
 type WidgetRepository interface {

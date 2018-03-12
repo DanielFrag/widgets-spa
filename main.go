@@ -6,8 +6,9 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	"github.com/DanielFrag/widgets-spa-rv/router"
+
 	"github.com/DanielFrag/widgets-spa-rv/infra"
+	"github.com/DanielFrag/widgets-spa-rv/router"
 )
 
 func main() {
@@ -24,7 +25,7 @@ func main() {
 	}
 	infra.StartDB()
 	r := router.NewRouter()
-	log.Fatal(http.ListenAndServe(":" + port, r))
+	log.Fatal(http.ListenAndServe(":"+port, r))
 }
 
 func clean() {

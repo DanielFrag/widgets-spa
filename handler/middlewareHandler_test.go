@@ -5,29 +5,30 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
-	"github.com/DanielFrag/widgets-spa-rv/utils"
-	"github.com/DanielFrag/widgets-spa-rv/repository"
+
 	"github.com/DanielFrag/widgets-spa-rv/model"
+	"github.com/DanielFrag/widgets-spa-rv/repository"
+	"github.com/DanielFrag/widgets-spa-rv/utils"
 	"github.com/gorilla/context"
 )
 
 func TestTokenChecker(t *testing.T) {
-	fA := func (w http.ResponseWriter, r *http.Request) {}
+	fA := func(w http.ResponseWriter, r *http.Request) {}
 	hfi := utils.HandlerFuncInjector{
-		Dependencies: []func (http.HandlerFunc) http.HandlerFunc {
+		Dependencies: []func(http.HandlerFunc) http.HandlerFunc{
 			TokenCheckerMiddleware,
 		},
 		Handler: fA,
 	}
 	hfi.InjectDependencies()
-	t.Run("ValidToken", func (t *testing.T) {
+	t.Run("ValidToken", func(t *testing.T) {
 		req, reqError := http.NewRequest("GET", "/", nil)
 		if reqError != nil {
 			t.Error("Error to create the request: " + reqError.Error())
 			return
 		}
 		mockToken, _ := utils.EncodeToken(map[string]string{
-			"userID": "1234",
+			"userID":  "1234",
 			"session": "456",
 		})
 		req.Header["Authorization"] = []string{mockToken}
@@ -44,7 +45,7 @@ func TestTokenChecker(t *testing.T) {
 			return
 		}
 	})
-	t.Run("NoToken", func (t *testing.T) {
+	t.Run("NoToken", func(t *testing.T) {
 		req, reqError := http.NewRequest("GET", "/", nil)
 		if reqError != nil {
 			t.Error("Error to create the request: " + reqError.Error())
@@ -62,9 +63,9 @@ func TestTokenChecker(t *testing.T) {
 }
 
 func TestRepositoryInjection(t *testing.T) {
-	fA := func (w http.ResponseWriter, r *http.Request) {}
+	fA := func(w http.ResponseWriter, r *http.Request) {}
 	hfi := utils.HandlerFuncInjector{
-		Dependencies: []func (http.HandlerFunc) http.HandlerFunc {
+		Dependencies: []func(http.HandlerFunc) http.HandlerFunc{
 			UserRepositoryInjector,
 			WidgetRepositoryInjector,
 		},
@@ -98,11 +99,11 @@ func TestUserSessionChecker(t *testing.T) {
 	userMock.InitializeUserDB()
 	users, _ := userMock.GetUsers()
 	firstUser = users[0]
-	fA := func (w http.ResponseWriter, r *http.Request) {}
-	dbInjector := func (next http.HandlerFunc) http.HandlerFunc {
-		return func (w http.ResponseWriter, r *http.Request) {
-			context.Set(r, "TokenPayload", map[string]interface{} {
-				"userID": firstUser.ID.Hex(),
+	fA := func(w http.ResponseWriter, r *http.Request) {}
+	dbInjector := func(next http.HandlerFunc) http.HandlerFunc {
+		return func(w http.ResponseWriter, r *http.Request) {
+			context.Set(r, "TokenPayload", map[string]interface{}{
+				"userID":      firstUser.ID.Hex(),
 				"userSession": firstUser.Session,
 			})
 			context.Set(r, "UserRepository", &userMock)
@@ -111,7 +112,7 @@ func TestUserSessionChecker(t *testing.T) {
 		}
 	}
 	hfi := utils.HandlerFuncInjector{
-		Dependencies: []func (http.HandlerFunc) http.HandlerFunc {
+		Dependencies: []func(http.HandlerFunc) http.HandlerFunc{
 			dbInjector,
 			UserSessionChecker,
 		},
@@ -134,7 +135,7 @@ func TestUserSessionChecker(t *testing.T) {
 	})
 	t.Run("InvalidUser", func(t *testing.T) {
 		firstUser = model.User{
-			ID: firstUser.ID,
+			ID:      firstUser.ID,
 			Session: firstUser.Session + "2",
 		}
 		req, reqError := http.NewRequest("GET", "/", nil)

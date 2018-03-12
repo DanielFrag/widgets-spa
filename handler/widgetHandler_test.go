@@ -1,22 +1,23 @@
 package handler
 
 import (
-	"fmt"
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
-	"bytes"
-	"github.com/DanielFrag/widgets-spa-rv/utils"
+
 	"github.com/DanielFrag/widgets-spa-rv/model"
+	"github.com/DanielFrag/widgets-spa-rv/utils"
 	"github.com/gorilla/context"
 	"github.com/gorilla/mux"
 )
 
 func TestWidgets(t *testing.T) {
 	widgetDBMock := WidgetDBMock{}
-	dbInjector := func (next http.HandlerFunc) http.HandlerFunc {
-		return func (w http.ResponseWriter, r *http.Request) {
+	dbInjector := func(next http.HandlerFunc) http.HandlerFunc {
+		return func(w http.ResponseWriter, r *http.Request) {
 			context.Set(r, "WidgetRepository", &widgetDBMock)
 			next(w, r)
 			return
@@ -24,18 +25,18 @@ func TestWidgets(t *testing.T) {
 	}
 	t.Run("CreateWidget", func(t *testing.T) {
 		hfi := utils.HandlerFuncInjector{
-			Dependencies: []func (http.HandlerFunc) http.HandlerFunc {
+			Dependencies: []func(http.HandlerFunc) http.HandlerFunc{
 				dbInjector,
 			},
 			Handler: CreateWidget,
 		}
 		hfi.InjectDependencies()
 		jsonReader := bytes.NewReader(utils.FormatJSON(model.Widget{
-			Name: "sunda",
-			Color: "blue",
-			Price: "200.90",
+			Name:      "sunda",
+			Color:     "blue",
+			Price:     "200.90",
 			Inventory: 9,
-			Melts: false,
+			Melts:     false,
 		}))
 		req, reqError := http.NewRequest("POST", "/", jsonReader)
 		if reqError != nil {
@@ -63,13 +64,13 @@ func TestWidgets(t *testing.T) {
 		widgets, _ := widgetDBMock.GetWidgets()
 		widgetID := widgets[0].ID.Hex()
 		hfi := utils.HandlerFuncInjector{
-			Dependencies: []func (http.HandlerFunc) http.HandlerFunc {
+			Dependencies: []func(http.HandlerFunc) http.HandlerFunc{
 				dbInjector,
 			},
 			Handler: GetWidgetById,
 		}
 		hfi.InjectDependencies()
-		req, reqError := http.NewRequest("GET", "/" + widgetID, nil)
+		req, reqError := http.NewRequest("GET", "/"+widgetID, nil)
 		if reqError != nil {
 			t.Error("Error to create the request: " + reqError.Error())
 			return
@@ -96,7 +97,7 @@ func TestWidgets(t *testing.T) {
 	})
 	t.Run("GetAllWidget", func(t *testing.T) {
 		hfi := utils.HandlerFuncInjector{
-			Dependencies: []func (http.HandlerFunc) http.HandlerFunc {
+			Dependencies: []func(http.HandlerFunc) http.HandlerFunc{
 				dbInjector,
 			},
 			Handler: GetWidgets,
@@ -123,7 +124,7 @@ func TestWidgets(t *testing.T) {
 		widgetID := widgets[0].ID.Hex()
 		newColor := widgets[0].Color + "2"
 		hfi := utils.HandlerFuncInjector{
-			Dependencies: []func (http.HandlerFunc) http.HandlerFunc {
+			Dependencies: []func(http.HandlerFunc) http.HandlerFunc{
 				dbInjector,
 			},
 			Handler: ChangeWidget,
@@ -132,7 +133,7 @@ func TestWidgets(t *testing.T) {
 		jsonReader := bytes.NewReader(utils.FormatJSON(model.Widget{
 			Color: newColor,
 		}))
-		req, reqError := http.NewRequest("PUT", "/" + widgetID, jsonReader)
+		req, reqError := http.NewRequest("PUT", "/"+widgetID, jsonReader)
 		if reqError != nil {
 			t.Error("Error to create the request: " + reqError.Error())
 		}

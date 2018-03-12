@@ -1,8 +1,8 @@
 package utils
 
-import(
-	"testing"
+import (
 	"regexp"
+	"testing"
 )
 
 func TestGenerateRandomAlphaNumericString(t *testing.T) {

@@ -3,8 +3,9 @@ package infra
 import (
 	"testing"
 	"time"
-	"gopkg.in/mgo.v2/bson"
+
 	"github.com/DanielFrag/widgets-spa-rv/model"
+	"gopkg.in/mgo.v2/bson"
 )
 
 func TestUserMGO(t *testing.T) {
@@ -17,12 +18,16 @@ func TestUserMGO(t *testing.T) {
 			return
 		}
 		ds.dbName = ds.dbName + "_test"
-	})
-	defer func() {
 		mgoSession := getSession()
 		dropDatabaseError := mgoSession.DB(getDbName()).DropDatabase()
 		if dropDatabaseError != nil {
-			panic(dropDatabaseError)
+			t.Error(dropDatabaseError)
+		}
+	})
+	defer func() {
+		recoverError := recover()
+		if recoverError != nil {
+			t.Error(recoverError)
 		}
 		StopDB()
 	}()
@@ -39,8 +44,8 @@ func TestUserMGO(t *testing.T) {
 		}
 	})
 	t.Run("InsertFirstUser", func(t *testing.T) {
-		user := model.User {
-			Login: userLogin,
+		user := model.User{
+			Login:    userLogin,
 			Password: userPass,
 			Gravatar: userGravatar,
 		}
@@ -78,8 +83,8 @@ func TestUserMGO(t *testing.T) {
 		}
 	})
 	t.Run("InsertSecondUser", func(t *testing.T) {
-		user := model.User {
-			Login: userLogin + "2",
+		user := model.User{
+			Login:    userLogin + "2",
 			Password: userPass + "2",
 			Gravatar: userGravatar + "2",
 		}
@@ -119,7 +124,7 @@ func TestUserMGO(t *testing.T) {
 			t.Error("Find user error: " + userError.Error())
 			return
 		}
-		updateError := userMGO.UpdateUserSession(userID.Hex(), user.Session + "new")
+		updateError := userMGO.UpdateUserSession(userID.Hex(), user.Session+"new")
 		if updateError != nil {
 			t.Error("Udate error: " + updateError.Error())
 			return
@@ -148,6 +153,19 @@ func TestUserMGO(t *testing.T) {
 		}
 		if userWithLogin.ID.Hex() != user.ID.Hex() {
 			t.Error("Inconsistent search")
+			return
+		}
+	})
+	t.Run("GetUserWithInvalidLogin", func(t *testing.T) {
+		userMGO := GetUserDB()
+		user, userError := userMGO.GetUserByID(userID.Hex())
+		if userError != nil {
+			t.Error("Find user error: " + userError.Error())
+			return
+		}
+		_, userWithLoginError := userMGO.GetUserByLogin(user.Login, user.Password+user.Password)
+		if userWithLoginError == nil {
+			t.Error("Should not find any user")
 			return
 		}
 	})

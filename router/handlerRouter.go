@@ -18,10 +18,10 @@ type Route struct {
 
 var openRoutes = []Route{
 	Route{
-		Method:      "POST",
-		Pattern:     "/login",
+		Method:  "POST",
+		Pattern: "/login",
 		HandlerFunc: utils.HandlerFuncInjector{
-			Dependencies: []func(http.HandlerFunc) http.HandlerFunc {
+			Dependencies: []func(http.HandlerFunc) http.HandlerFunc{
 				handler.UserRepositoryInjector,
 			},
 			Handler: handler.UserLogin,
@@ -31,11 +31,11 @@ var openRoutes = []Route{
 
 var apiRoutes = []Route{
 	Route{
-		Name:        "GetUsers",
-		Method:      "GET",
-		Pattern:     "/users",
+		Name:    "GetUsers",
+		Method:  "GET",
+		Pattern: "/users",
 		HandlerFunc: utils.HandlerFuncInjector{
-			Dependencies: []func(http.HandlerFunc) http.HandlerFunc {
+			Dependencies: []func(http.HandlerFunc) http.HandlerFunc{
 				handler.TokenCheckerMiddleware,
 				handler.UserRepositoryInjector,
 				handler.UserSessionChecker,
@@ -44,11 +44,11 @@ var apiRoutes = []Route{
 		},
 	},
 	Route{
-		Name:        "GetUserByID",
-		Method:      "GET",
-		Pattern:     "/users/{id}",
+		Name:    "GetUserByID",
+		Method:  "GET",
+		Pattern: "/users/{id}",
 		HandlerFunc: utils.HandlerFuncInjector{
-			Dependencies: []func(http.HandlerFunc) http.HandlerFunc {
+			Dependencies: []func(http.HandlerFunc) http.HandlerFunc{
 				handler.TokenCheckerMiddleware,
 				handler.UserRepositoryInjector,
 				handler.UserSessionChecker,
@@ -57,11 +57,11 @@ var apiRoutes = []Route{
 		},
 	},
 	Route{
-		Name:        "GetWidgets",
-		Method:      "GET",
-		Pattern:     "/widgets",
+		Name:    "GetWidgets",
+		Method:  "GET",
+		Pattern: "/widgets",
 		HandlerFunc: utils.HandlerFuncInjector{
-			Dependencies: []func(http.HandlerFunc) http.HandlerFunc {
+			Dependencies: []func(http.HandlerFunc) http.HandlerFunc{
 				handler.TokenCheckerMiddleware,
 				handler.UserRepositoryInjector,
 				handler.UserSessionChecker,
@@ -71,11 +71,11 @@ var apiRoutes = []Route{
 		},
 	},
 	Route{
-		Name:        "GetWidgetById",
-		Method:      "GET",
-		Pattern:     "/widgets/{id}",
+		Name:    "GetWidgetById",
+		Method:  "GET",
+		Pattern: "/widgets/{id}",
 		HandlerFunc: utils.HandlerFuncInjector{
-			Dependencies: []func(http.HandlerFunc) http.HandlerFunc {
+			Dependencies: []func(http.HandlerFunc) http.HandlerFunc{
 				handler.TokenCheckerMiddleware,
 				handler.UserRepositoryInjector,
 				handler.UserSessionChecker,
@@ -85,11 +85,11 @@ var apiRoutes = []Route{
 		},
 	},
 	Route{
-		Name:        "CreateWidget",
-		Method:      "POST",
-		Pattern:     "/widgets",
+		Name:    "CreateWidget",
+		Method:  "POST",
+		Pattern: "/widgets",
 		HandlerFunc: utils.HandlerFuncInjector{
-			Dependencies: []func(http.HandlerFunc) http.HandlerFunc {
+			Dependencies: []func(http.HandlerFunc) http.HandlerFunc{
 				handler.TokenCheckerMiddleware,
 				handler.UserRepositoryInjector,
 				handler.UserSessionChecker,
@@ -99,11 +99,11 @@ var apiRoutes = []Route{
 		},
 	},
 	Route{
-		Name:        "ChangeWidget",
-		Method:      "PUT",
-		Pattern:     "/widgets/{id}",
+		Name:    "ChangeWidget",
+		Method:  "PUT",
+		Pattern: "/widgets/{id}",
 		HandlerFunc: utils.HandlerFuncInjector{
-			Dependencies: []func(http.HandlerFunc) http.HandlerFunc {
+			Dependencies: []func(http.HandlerFunc) http.HandlerFunc{
 				handler.TokenCheckerMiddleware,
 				handler.UserRepositoryInjector,
 				handler.UserSessionChecker,

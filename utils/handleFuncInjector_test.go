@@ -4,29 +4,30 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
 	"github.com/gorilla/context"
 )
 
 func TestHandlerFuncInjector(t *testing.T) {
-	fA := func (next http.HandlerFunc) http.HandlerFunc {
-		return func (w http.ResponseWriter, r *http.Request) {
+	fA := func(next http.HandlerFunc) http.HandlerFunc {
+		return func(w http.ResponseWriter, r *http.Request) {
 			context.Set(r, "fA", "fA")
 			next(w, r)
 		}
 	}
-	fB := func (next http.HandlerFunc) http.HandlerFunc {
-		return func (w http.ResponseWriter, r *http.Request) {
-			context.Set(r, "fB", []rune {'f', 'B'})
+	fB := func(next http.HandlerFunc) http.HandlerFunc {
+		return func(w http.ResponseWriter, r *http.Request) {
+			context.Set(r, "fB", []rune{'f', 'B'})
 			next(w, r)
 		}
 	}
-	fCollection := []func (http.HandlerFunc) http.HandlerFunc {
+	fCollection := []func(http.HandlerFunc) http.HandlerFunc{
 		fA,
 		fB,
 	}
 	f := HandlerFuncInjector{
 		Dependencies: fCollection,
-		Handler: func (w http.ResponseWriter, r *http.Request) {},
+		Handler:      func(w http.ResponseWriter, r *http.Request) {},
 	}
 	f.InjectDependencies()
 	req, reqError := http.NewRequest("GET", "/", nil)

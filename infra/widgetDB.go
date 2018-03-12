@@ -1,9 +1,9 @@
 package infra
 
 import (
+	"github.com/DanielFrag/widgets-spa-rv/model"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
-	"github.com/DanielFrag/widgets-spa-rv/model"
 )
 
 //WidgetMGO wrap the session to access widget data
@@ -37,7 +37,7 @@ func (w *WidgetMGO) GetWidgetByID(widgetID string) (model.Widget, error) {
 	var widget model.Widget
 	err := widgetCollection.Find(bson.M{
 		"_id": bson.ObjectIdHex(widgetID),
-		}).One(&widget)
+	}).One(&widget)
 	return widget, err
 }
 
@@ -50,14 +50,14 @@ func (w *WidgetMGO) UpdateWidget(widgetID string, widgetData map[string]interfac
 	for key, value := range widgetData {
 		changes[key] = value
 	}
-	return widgetCollection.Update(bson.M {
+	return widgetCollection.Update(bson.M{
 		"_id": bson.ObjectIdHex(widgetID),
-	}, bson.M {
+	}, bson.M{
 		"$set": changes,
 	})
 }
 
 //GetWidgetDB return the object to access the widget data
 func GetWidgetDB() *WidgetMGO {
-	return &WidgetMGO {}
+	return &WidgetMGO{}
 }

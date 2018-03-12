@@ -3,8 +3,9 @@ package infra
 import (
 	"testing"
 	"time"
-	"gopkg.in/mgo.v2/bson"
+
 	"github.com/DanielFrag/widgets-spa-rv/model"
+	"gopkg.in/mgo.v2/bson"
 )
 
 func TestWidgetMGO(t *testing.T) {
@@ -16,12 +17,16 @@ func TestWidgetMGO(t *testing.T) {
 			t.Error("Can't starts the DB")
 		}
 		ds.dbName = ds.dbName + "_test"
-	})
-	defer func() {
 		mgoSession := getSession()
 		dropDatabaseError := mgoSession.DB(getDbName()).DropDatabase()
 		if dropDatabaseError != nil {
-			panic(dropDatabaseError)
+			t.Error(dropDatabaseError)
+		}
+	})
+	defer func() {
+		recoverError := recover()
+		if recoverError != nil {
+			t.Error(recoverError)
 		}
 		StopDB()
 	}()
@@ -38,11 +43,11 @@ func TestWidgetMGO(t *testing.T) {
 	t.Run("CreateFirstWidget", func(t *testing.T) {
 		widgetMGO := GetWidgetDB()
 		wError := widgetMGO.CreateWidget(model.Widget{
-			Name: wName,
-			Color: wColor,
-			Price: wPrice,
+			Name:      wName,
+			Color:     wColor,
+			Price:     wPrice,
 			Inventory: wInventory,
-			Melts: wMelts,
+			Melts:     wMelts,
 		})
 		if wError != nil {
 			t.Error("Can't create the first widget register")
@@ -65,11 +70,11 @@ func TestWidgetMGO(t *testing.T) {
 	t.Run("CreateSecondWidget", func(t *testing.T) {
 		widgetMGO := GetWidgetDB()
 		wError := widgetMGO.CreateWidget(model.Widget{
-			Name: wName + "2",
-			Color: wColor + "2",
-			Price: wPrice + "2",
+			Name:      wName + "2",
+			Color:     wColor + "2",
+			Price:     wPrice + "2",
 			Inventory: int32(wInventory + 1),
-			Melts: !wMelts,
+			Melts:     !wMelts,
 		})
 		if wError != nil {
 			t.Error("Can't create the second widget register")
@@ -105,8 +110,8 @@ func TestWidgetMGO(t *testing.T) {
 	})
 	t.Run("UpdateWidget", func(t *testing.T) {
 		widgetMGO := GetWidgetDB()
-		wUpdateMap := map[string]interface{} {
-			"name": "foo",
+		wUpdateMap := map[string]interface{}{
+			"name":  "foo",
 			"color": "bar",
 		}
 		updateError := widgetMGO.UpdateWidget(widget.ID.Hex(), wUpdateMap)

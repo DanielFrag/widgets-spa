@@ -1,6 +1,6 @@
 package utils
 
-import(
+import (
 	"os"
 	"strconv"
 	"testing"
@@ -66,21 +66,21 @@ func TestGetTokenExpirationTime(t *testing.T) {
 
 //TestTokenChecker check if the func 'TokenChecker' is handle correctly a token string
 /*	Valid token string mock
-		Header (algorithm and type)
-		{
-			"alg": "HS256",
-			"typ": "JWT"
+	Header (algorithm and type)
+	{
+		"alg": "HS256",
+		"typ": "JWT"
+	}
+	Payload (data)
+	{
+		"data": {
+			"sub": "1234567890",
+			"name": "John Doe",
+			"iat": 1516239022
 		}
-		Payload (data)
-		{
-			"data": {
-				"sub": "1234567890",
-				"name": "John Doe",
-				"iat": 1516239022
-			}
-		}
-		Verify Signature
-			HMACSHA256(base64UrlEncode(header) + "." + base64UrlEncode(payload), "secret")
+	}
+	Verify Signature
+		HMACSHA256(base64UrlEncode(header) + "." + base64UrlEncode(payload), "secret")
 */
 func TestTokenChecker(t *testing.T) {
 	tokenMock := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InN1YiI6IjEyMzQ1Njc4OTAiLCJuYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE1MTYyMzkwMjJ9fQ.YdUPFvca3f-HP4w0M8r80Vtr8rJH8TrAqcdbTDxk2io"
@@ -125,8 +125,8 @@ func TestTokenChecker(t *testing.T) {
 //TestEncodeToken should check the methods that assign/verify the token
 func TestEncodeToken(t *testing.T) {
 	var tokenString string
-	dataMock := map[string]interface{} {
-		"sub": "1234567890",
+	dataMock := map[string]interface{}{
+		"sub":  "1234567890",
 		"name": "John Doe",
 	}
 	t.Run("AssignToken", func(t *testing.T) {
