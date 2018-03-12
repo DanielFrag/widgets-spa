@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -23,24 +24,31 @@ func TestTokenChecker(t *testing.T) {
 		req, reqError := http.NewRequest("GET", "/", nil)
 		if reqError != nil {
 			t.Error("Error to create the request: " + reqError.Error())
+			return
 		}
-		req.Header["Authorization"] = []string{`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJRCI6IjEyMzQiLCJzZXNzaW9uIjoiMTIzNDU2Nzg5MCJ9LCJpYXQiOjE1MjA0NzAwNDcsImlzIjowfQ.G4TWM1MFNbHSZHLogG3OFsxNnwpmYt9iwpaaJqJGTM0`}
+		mockToken, _ := utils.EncodeToken(map[string]string{
+			"userID": "1234",
+			"session": "456",
+		})
+		req.Header["Authorization"] = []string{mockToken}
 		reqRecorder := httptest.NewRecorder()
 		hfi.Handler.ServeHTTP(reqRecorder, req)
 		result := reqRecorder.Result()
 		if result.StatusCode == 400 || result.StatusCode == 403 {
 			t.Error("Can't validate the token: " + reqRecorder.Body.String())
+			return
 		}
 		tokenPayload := context.Get(req, "TokenPayload")
-		newToken := context.Get(req, "Token")
-		if tokenPayload == nil || newToken == nil {
+		if tokenPayload == nil {
 			t.Error("New token not seted")
+			return
 		}
 	})
 	t.Run("NoToken", func (t *testing.T) {
 		req, reqError := http.NewRequest("GET", "/", nil)
 		if reqError != nil {
 			t.Error("Error to create the request: " + reqError.Error())
+			return
 		}
 		req.Header["Authorization"] = []string{""}
 		reqRecorder := httptest.NewRecorder()
@@ -48,6 +56,7 @@ func TestTokenChecker(t *testing.T) {
 		result := reqRecorder.Result()
 		if result.StatusCode != 400 {
 			t.Error("Wrong status code. Expected 400 and got " + string(result.StatusCode))
+			return
 		}
 	})
 }
@@ -65,6 +74,7 @@ func TestRepositoryInjection(t *testing.T) {
 	req, reqError := http.NewRequest("GET", "/", nil)
 	if reqError != nil {
 		t.Error("Error to create the request: " + reqError.Error())
+		return
 	}
 	reqRecorder := httptest.NewRecorder()
 	hfi.Handler.ServeHTTP(reqRecorder, req)
@@ -72,11 +82,13 @@ func TestRepositoryInjection(t *testing.T) {
 	widgetRepositoryContext := context.Get(req, "WidgetRepository")
 	if userRepositoryContext == nil || widgetRepositoryContext == nil {
 		t.Error("Repository not seted in requisiton context")
+		return
 	}
 	_, userOk := userRepositoryContext.(repository.UserRepository)
 	_, widgetOk := widgetRepositoryContext.(repository.WidgetRepository)
 	if !userOk || !widgetOk {
 		t.Error("Context seted with an invalid interface")
+		return
 	}
 }
 
@@ -89,7 +101,7 @@ func TestUserSessionChecker(t *testing.T) {
 	fA := func (w http.ResponseWriter, r *http.Request) {}
 	dbInjector := func (next http.HandlerFunc) http.HandlerFunc {
 		return func (w http.ResponseWriter, r *http.Request) {
-			context.Set(r, "TokenPayload", map[string]string {
+			context.Set(r, "TokenPayload", map[string]interface{} {
 				"userID": firstUser.ID.Hex(),
 				"userSession": firstUser.Session,
 			})
@@ -110,12 +122,14 @@ func TestUserSessionChecker(t *testing.T) {
 		req, reqError := http.NewRequest("GET", "/", nil)
 		if reqError != nil {
 			t.Error("Error to create the request: " + reqError.Error())
+			return
 		}
 		reqRecorder := httptest.NewRecorder()
 		hfi.Handler.ServeHTTP(reqRecorder, req)
 		result := reqRecorder.Result()
 		if result.StatusCode == 500 || result.StatusCode == 401 {
-			t.Error("Can't found the user with the session")
+			t.Error("Can't found the user with the session: " + string(reqRecorder.Body.Bytes()))
+			return
 		}
 	})
 	t.Run("InvalidUser", func(t *testing.T) {
@@ -126,12 +140,14 @@ func TestUserSessionChecker(t *testing.T) {
 		req, reqError := http.NewRequest("GET", "/", nil)
 		if reqError != nil {
 			t.Error("Error to create the request: " + reqError.Error())
+			return
 		}
 		reqRecorder := httptest.NewRecorder()
 		hfi.Handler.ServeHTTP(reqRecorder, req)
 		result := reqRecorder.Result()
 		if result.StatusCode != 403 {
-			t.Error("Wrong status code. Expected 403 and got " + string(result.StatusCode))
+			t.Error(fmt.Sprintf("Wrong status code. Expected 403 and got %v", result.StatusCode))
+			return
 		}
 	})
 }

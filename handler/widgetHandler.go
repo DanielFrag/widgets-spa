@@ -34,6 +34,7 @@ func CreateWidget(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Error adding the widget: " + widgetError.Error(), http.StatusInternalServerError)
 		return
 	}
+	w.WriteHeader(201)
 	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 	w.Write([]byte("added!"))
 	return

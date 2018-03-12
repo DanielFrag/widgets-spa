@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
@@ -39,19 +40,23 @@ func TestWidgets(t *testing.T) {
 		req, reqError := http.NewRequest("POST", "/", jsonReader)
 		if reqError != nil {
 			t.Error("Error to create the request: " + reqError.Error())
+			return
 		}
 		reqRecorder := httptest.NewRecorder()
 		hfi.Handler.ServeHTTP(reqRecorder, req)
 		result := reqRecorder.Result()
-		if result.StatusCode != 204 {
-			t.Error("Wrong status code")
+		if result.StatusCode != 201 {
+			t.Error(fmt.Sprintf("Wrong status code. Expected 204, got %v", result.StatusCode))
+			return
 		}
 		widgets, widgetsError := widgetDBMock.GetWidgets()
 		if widgetsError != nil {
 			t.Error("Widgets error: " + widgetsError.Error())
+			return
 		}
 		if len(widgets) != 1 {
 			t.Error("Widgets not inserted")
+			return
 		}
 	})
 	t.Run("GetWidgetByID", func(t *testing.T) {
@@ -67,6 +72,7 @@ func TestWidgets(t *testing.T) {
 		req, reqError := http.NewRequest("GET", "/" + widgetID, nil)
 		if reqError != nil {
 			t.Error("Error to create the request: " + reqError.Error())
+			return
 		}
 		reqRecorder := httptest.NewRecorder()
 		r := mux.NewRouter()
@@ -75,14 +81,17 @@ func TestWidgets(t *testing.T) {
 		result := reqRecorder.Result()
 		if result.StatusCode == 400 || result.StatusCode == 500 {
 			t.Error("Wrong response")
+			return
 		}
 		var resWidget model.Widget
 		jsonError := json.Unmarshal(reqRecorder.Body.Bytes(), &resWidget)
 		if jsonError != nil {
 			t.Error("Json error: " + jsonError.Error())
+			return
 		}
 		if resWidget.ID.Hex() != widgetID {
 			t.Error("Wrong widget")
+			return
 		}
 	})
 	t.Run("GetAllWidget", func(t *testing.T) {
@@ -109,7 +118,7 @@ func TestWidgets(t *testing.T) {
 			t.Error("Inconsistent data")
 		}
 	})
-	t.Run("GetWidgetByID", func(t *testing.T) {
+	t.Run("ChangeWidget", func(t *testing.T) {
 		widgets, _ := widgetDBMock.GetWidgets()
 		widgetID := widgets[0].ID.Hex()
 		newColor := widgets[0].Color + "2"
@@ -129,11 +138,11 @@ func TestWidgets(t *testing.T) {
 		}
 		reqRecorder := httptest.NewRecorder()
 		r := mux.NewRouter()
-		r.StrictSlash(true).HandleFunc("/{id}", hfi.Handler).Methods("GET")
+		r.StrictSlash(true).HandleFunc("/{id}", hfi.Handler).Methods("PUT")
 		r.ServeHTTP(reqRecorder, req)
 		result := reqRecorder.Result()
 		if result.StatusCode != 204 {
-			t.Error("Wrong response")
+			t.Error(fmt.Sprintf("Wrong response. Expected 204, got %v", result.StatusCode))
 		}
 		widgets, _ = widgetDBMock.GetWidgets()
 		if widgets[0].Color != newColor {

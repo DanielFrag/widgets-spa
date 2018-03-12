@@ -4,10 +4,8 @@ import (
 	"fmt"
 	"net/http"
 	"net/http/httptest"
-	"log"
 	"strings"
 	"testing"
-	//"github.com/gorilla/context"
 )
 
 func TestCorsSetup(t *testing.T) {
@@ -63,7 +61,6 @@ func checkHeaders(allowedItens []string, requiredItens []string) (bool, string) 
 	}
 	for key, value := range m {
 		if !value {
-			log.Println(key)
 			return false, key
 		}
 	}

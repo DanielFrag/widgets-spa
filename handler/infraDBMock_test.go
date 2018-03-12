@@ -67,6 +67,7 @@ type WidgetDBMock struct {
 }
 
 func (w *WidgetDBMock) CreateWidget(widget model.Widget) error {
+	widget.ID = bson.NewObjectId()
 	w.widgets = append(w.widgets, widget)
 	return nil
 }
@@ -96,7 +97,7 @@ func (w *WidgetDBMock) UpdateWidget(widgetID string, widgetData map[string]inter
 				case "price":
 					w.widgets[i].Price = v.(string)
 				case "invetory":
-					w.widgets[i].Inventory = v.(uint64)
+					w.widgets[i].Inventory = v.(int32)
 				case "melts":
 					w.widgets[i].Melts = v.(bool)
 				}

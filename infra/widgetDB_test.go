@@ -9,7 +9,7 @@ import (
 
 func TestWidgetMGO(t *testing.T) {
 	var widget model.Widget
-	wName, wColor, wPrice, wInventory, wMelts := "sunda", "red", "10.91", uint64(12), true
+	wName, wColor, wPrice, wInventory, wMelts := "sunda", "red", "10.91", int32(12), true
 	t.Run("StartDB", func(t *testing.T) {
 		startDBError := StartDB()
 		if startDBError != nil {
@@ -68,7 +68,7 @@ func TestWidgetMGO(t *testing.T) {
 			Name: wName + "2",
 			Color: wColor + "2",
 			Price: wPrice + "2",
-			Inventory: uint64(wInventory + 1),
+			Inventory: int32(wInventory + 1),
 			Melts: !wMelts,
 		})
 		if wError != nil {

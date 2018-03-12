@@ -1,6 +1,8 @@
 package handler
 
 import (
+	"fmt"
+	"bytes"
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
@@ -76,6 +78,36 @@ func TestGetUsers(t *testing.T) {
 		}
 		if userID != user.ID.Hex() {
 			t.Error("Wrong user")
+		}
+	})
+	t.Run("UserLogin", func(t *testing.T) {
+		users, _ := userMock.GetUsers()
+		hfi := utils.HandlerFuncInjector{
+			Dependencies: []func (http.HandlerFunc) http.HandlerFunc {
+				dbInjector,
+			},
+			Handler: UserLogin,
+		}
+		hfi.InjectDependencies()
+		jsonReader := bytes.NewReader(utils.FormatJSON(map[string]string{
+			"login": users[0].Login,
+			"password": users[0].Password,
+		}))
+		req, reqError := http.NewRequest("POST", "/", jsonReader)
+		if reqError != nil {
+			t.Error("Error to create the request: " + reqError.Error())
+			return
+		}
+		reqRecorder := httptest.NewRecorder()
+		hfi.Handler.ServeHTTP(reqRecorder, req)
+		result := reqRecorder.Result()
+		if result.StatusCode != 200 {
+			t.Error(fmt.Sprintf("Wrong status code. Expected 200, got %v", result.StatusCode))
+		}
+		var m map[string]string
+		json.Unmarshal(reqRecorder.Body.Bytes(), &m)
+		if m["token"] == "" {
+			t.Error("A token must be returned")
 		}
 	})
 }

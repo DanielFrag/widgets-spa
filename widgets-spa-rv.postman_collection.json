@@ -1,0 +1,678 @@
+{
+	"info": {
+		"name": "widgets-spa copy",
+		"_postman_id": "42149d7e-e6c0-ce0d-dba4-eaacf5b0ef8a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJRCI6IjVhYTRkNDg1MjMxZjYxNmE0OWI5MzIxMyIsInVzZXJTZXNzaW9uIjoiQVdvd0pEOGFJOCJ9LCJleHAiOjE1MjA4MTY2MjQsImlhdCI6MTUyMDgxMzAyNH0.nO2i52Z3SxzegIA8vcGCHM0KY2zzJPlKzAzpAaL9-FE"
+					},
+					{
+						"key": "Origin",
+						"value": "Postman"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				},
+				"description": null
+			},
+			"response": [
+				{
+					"id": "e80b7cde-d609-4f5c-946d-a025ab322c1c",
+					"name": "/users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJRCI6IjVhYTRkNDg1MjMxZjYxNmE0OWI5MzIxMyIsInVzZXJTZXNzaW9uIjoiVzRzMGJXdkJlVyJ9LCJleHAiOjE1MjA4MDUxMzEsImlhdCI6MTUyMDgwMTUzMX0.TWZBxkGl5Jp4MspyS7VsvXASgME3S0Ze6KWi61RjsTY",
+								"disabled": false
+							},
+							{
+								"key": "Origin",
+								"value": "Postman",
+								"disabled": false
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Accept, Accept-Encoding, Authorization, Content-Length, Content-Type",
+							"name": "Access-Control-Allow-Headers",
+							"description": "Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request."
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, OPTIONS",
+							"name": "Access-Control-Allow-Methods",
+							"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "Postman",
+							"name": "Access-Control-Allow-Origin",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"key": "Content-Length",
+							"value": "71",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 11 Mar 2018 20:53:34 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [],
+					"responseTime": 30,
+					"body": "[{\"id\":\"5aa4d485231f616a49b93213\",\"name\":\"admin\",\"gravatar\":\"/admin\"}]\n"
+				}
+			]
+		},
+		{
+			"name": "/widgets",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJRCI6IjVhYTRkNDg1MjMxZjYxNmE0OWI5MzIxMyIsInVzZXJTZXNzaW9uIjoiQVdvd0pEOGFJOCJ9LCJleHAiOjE1MjA4MTY2MjQsImlhdCI6MTUyMDgxMzAyNH0.nO2i52Z3SxzegIA8vcGCHM0KY2zzJPlKzAzpAaL9-FE"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/widgets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"widgets"
+					]
+				},
+				"description": null
+			},
+			"response": [
+				{
+					"id": "190aeefd-bb96-402d-bc97-48bc2bdfc037",
+					"name": "/widgets",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJRCI6IjVhYTRkNDg1MjMxZjYxNmE0OWI5MzIxMyIsInVzZXJTZXNzaW9uIjoiQVdvd0pEOGFJOCJ9LCJleHAiOjE1MjA4MTY2MjQsImlhdCI6MTUyMDgxMzAyNH0.nO2i52Z3SxzegIA8vcGCHM0KY2zzJPlKzAzpAaL9-FE",
+								"disabled": false
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/widgets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"widgets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "239",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 12 Mar 2018 00:05:23 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [],
+					"responseTime": 6,
+					"body": "[{\"id\":\"5aa4dba39b3063e73f4be180\",\"name\":\"Losenoidenbdsfkv\",\"color\":\"blue\",\"price\":\"10.00\",\"inventory\":99,\"melts\":true},{\"id\":\"5aa4dbf29b3063e73f4be18a\",\"name\":\"chocolate dmfs\",\"color\":\"Brown\",\"price\":\"10.40\",\"inventory\":-2,\"melts\":true}]\n"
+				}
+			]
+		},
+		{
+			"name": "/widgets/:id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJRCI6IjVhYTRkNDg1MjMxZjYxNmE0OWI5MzIxMyIsInVzZXJTZXNzaW9uIjoiQVdvd0pEOGFJOCJ9LCJleHAiOjE1MjA4MTY2MjQsImlhdCI6MTUyMDgxMzAyNH0.nO2i52Z3SxzegIA8vcGCHM0KY2zzJPlKzAzpAaL9-FE"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/widgets/5aa4dbf29b3063e73f4be18a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"widgets",
+						"5aa4dbf29b3063e73f4be18a"
+					]
+				},
+				"description": null
+			},
+			"response": [
+				{
+					"id": "e1cb87f8-9845-4028-b24f-6898478987fe",
+					"name": "/widgets/:id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJRCI6IjVhYTRkNDg1MjMxZjYxNmE0OWI5MzIxMyIsInVzZXJTZXNzaW9uIjoiQVdvd0pEOGFJOCJ9LCJleHAiOjE1MjA4MTY2MjQsImlhdCI6MTUyMDgxMzAyNH0.nO2i52Z3SxzegIA8vcGCHM0KY2zzJPlKzAzpAaL9-FE",
+								"disabled": false
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/widgets/5aa4dbf29b3063e73f4be18a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"widgets",
+								"5aa4dbf29b3063e73f4be18a"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "118",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 12 Mar 2018 00:06:20 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [],
+					"responseTime": 104,
+					"body": "{\"id\":\"5aa4dbf29b3063e73f4be18a\",\"name\":\"chocolate dmfs\",\"color\":\"Brown\",\"price\":\"10.40\",\"inventory\":-2,\"melts\":true}\n"
+				}
+			]
+		},
+		{
+			"name": "POST /widgets",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJRCI6IjVhYTRkNDg1MjMxZjYxNmE0OWI5MzIxMyIsInVzZXJTZXNzaW9uIjoiQVdvd0pEOGFJOCJ9LCJleHAiOjE1MjA4MTY2MjQsImlhdCI6MTUyMDgxMzAyNH0.nO2i52Z3SxzegIA8vcGCHM0KY2zzJPlKzAzpAaL9-FE"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"morango dmfs\",\n    \"color\": \"red\",\n    \"price\": \"6.40\",\n    \"inventory\": 6,\n    \"melts\": false\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/widgets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"widgets"
+					]
+				},
+				"description": null
+			},
+			"response": [
+				{
+					"id": "8555fbc4-f62d-46f5-b9c6-21f3121247a5",
+					"name": "POST /widgets",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": false
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJRCI6IjVhYTRkNDg1MjMxZjYxNmE0OWI5MzIxMyIsInVzZXJTZXNzaW9uIjoiQVdvd0pEOGFJOCJ9LCJleHAiOjE1MjA4MTY2MjQsImlhdCI6MTUyMDgxMzAyNH0.nO2i52Z3SxzegIA8vcGCHM0KY2zzJPlKzAzpAaL9-FE",
+								"disabled": false
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"morango dmfs\",\n    \"color\": \"red\",\n    \"price\": \"6.40\",\n    \"inventory\": 6,\n    \"melts\": false\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/widgets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"widgets"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "plain",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "6",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 12 Mar 2018 00:07:47 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [],
+					"responseTime": 112,
+					"body": "added!"
+				}
+			]
+		},
+		{
+			"name": "PUT /widgets/:id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJRCI6IjVhYTRkNDg1MjMxZjYxNmE0OWI5MzIxMyIsInVzZXJTZXNzaW9uIjoiQVdvd0pEOGFJOCJ9LCJleHAiOjE1MjA4MTY2MjQsImlhdCI6MTUyMDgxMzAyNH0.nO2i52Z3SxzegIA8vcGCHM0KY2zzJPlKzAzpAaL9-FE"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n    \"color\": \"grey\",\n    \"inventory\": 47,\n    \"melts\": true\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/widgets/5aa5c4d3f26c2603666062d1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"widgets",
+						"5aa5c4d3f26c2603666062d1"
+					]
+				},
+				"description": null
+			},
+			"response": [
+				{
+					"id": "8aa53ab3-3f50-45a9-82e8-7202c8cd907e",
+					"name": "PUT /widgets/:id",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": false
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJRCI6IjVhYTRkNDg1MjMxZjYxNmE0OWI5MzIxMyIsInVzZXJTZXNzaW9uIjoiQVdvd0pEOGFJOCJ9LCJleHAiOjE1MjA4MTY2MjQsImlhdCI6MTUyMDgxMzAyNH0.nO2i52Z3SxzegIA8vcGCHM0KY2zzJPlKzAzpAaL9-FE",
+								"disabled": false
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n    \"color\": \"grey\",\n    \"inventory\": 47,\n    \"melts\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/widgets/5aa5c4d3f26c2603666062d1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"widgets",
+								"5aa5c4d3f26c2603666062d1"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Mon, 12 Mar 2018 00:09:01 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [],
+					"responseTime": 30,
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8080/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Origin",
+						"value": "Postman"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"login\": \"admin\",\n\t\"password\": \"admin\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				},
+				"description": ""
+			},
+			"response": [
+				{
+					"id": "9fed244b-5740-47a5-8597-7df94efe86d2",
+					"name": "http://localhost:8080/login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": false
+							},
+							{
+								"key": "Origin",
+								"value": "Postman",
+								"disabled": false
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"login\": \"admin\",\n\t\"password\": \"admin\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Accept, Accept-Encoding, Authorization, Content-Length, Content-Type",
+							"name": "Access-Control-Allow-Headers",
+							"description": "Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request."
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, OPTIONS",
+							"name": "Access-Control-Allow-Methods",
+							"description": "Specifies the method or methods allowed when accessing the resource. This is used in response to a preflight request."
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "Postman",
+							"name": "Access-Control-Allow-Origin",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"key": "Content-Length",
+							"value": "237",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 11 Mar 2018 20:52:11 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [],
+					"responseTime": 24,
+					"body": "{\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJRCI6IjVhYTRkNDg1MjMxZjYxNmE0OWI5MzIxMyIsInVzZXJTZXNzaW9uIjoiVzRzMGJXdkJlVyJ9LCJleHAiOjE1MjA4MDUxMzEsImlhdCI6MTUyMDgwMTUzMX0.TWZBxkGl5Jp4MspyS7VsvXASgME3S0Ze6KWi61RjsTY\"}\n"
+				}
+			]
+		},
+		{
+			"name": "/users/:id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJRCI6IjVhYTRkNDg1MjMxZjYxNmE0OWI5MzIxMyIsInVzZXJTZXNzaW9uIjoiQVdvd0pEOGFJOCJ9LCJleHAiOjE1MjA4MTY2MjQsImlhdCI6MTUyMDgxMzAyNH0.nO2i52Z3SxzegIA8vcGCHM0KY2zzJPlKzAzpAaL9-FE"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/5aa4d485231f616a49b93213",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"5aa4d485231f616a49b93213"
+					]
+				},
+				"description": ""
+			},
+			"response": [
+				{
+					"id": "cd44767e-9cc7-4c9b-99a5-d38a5aa9bb78",
+					"name": "/users/:id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJRCI6IjVhYTRkNDg1MjMxZjYxNmE0OWI5MzIxMyIsInVzZXJTZXNzaW9uIjoiQVdvd0pEOGFJOCJ9LCJleHAiOjE1MjA4MTY2MjQsImlhdCI6MTUyMDgxMzAyNH0.nO2i52Z3SxzegIA8vcGCHM0KY2zzJPlKzAzpAaL9-FE",
+								"disabled": false
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/5aa4d485231f616a49b93213",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"5aa4d485231f616a49b93213"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "69",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 12 Mar 2018 00:04:45 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookie": [],
+					"responseTime": 27,
+					"body": "{\"id\":\"5aa4d485231f616a49b93213\",\"name\":\"admin\",\"gravatar\":\"/admin\"}\n"
+				}
+			]
+		}
+	]
+}
