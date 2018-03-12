@@ -5,6 +5,13 @@ API escrita em Golang para fornecer recursos para o frontend contido em:
 https://github.com/RedVentures/widgets-spa
 ```
 
+# Requisitos
+
+- Criar todo o serviço de backend para integrar com a aplicação acima;
+- Autenticar a API via token;
+- Usar a linguagem Go (Golang);
+- Persistir os dados em alguma base de dados de sua preferência;
+
 # Descrição da Solução
 
 A aplicação foi organizada nos seguintes pacotes:
@@ -66,4 +73,112 @@ Um novo executável será criado na raiz do projeto. Então, basta digitar no te
 
 ```
 ./<nome_do_executável>
+```
+
+## Teste das rotas
+
+O arquivo 'widgets-spa-rv.postman_collection.json' pode ser importado pelo software 'Postman'.
+Ao importar o arquivo, será criada uma nova coleção no Postman. Esta coleção contém os dados para requisitar os recursos da API, além de alguns resultados já gravados como exemplo.
+
+## Rotas
+
+/login
+	Método
+		POST
+	Headers
+		Content-Type: application/json
+	Body
+```
+{
+	"login": "admin",
+	"password": "admin"
+}
+```
+
+/users
+	Método
+		GET
+	Headers
+		Authorization: <token>
+
+/users/:id
+	Método
+		GET
+	Headers
+		Authorization: <token>
+
+/widgets
+	Método
+		GET
+	Headers
+		Authorization: <token>
+
+/widgets/:id
+	Método
+		GET
+	Headers
+		Authorization: <token>
+
+/widgets
+	Método
+		POST
+	Headers
+		Authorization: <token>
+		Content-Type: application/json
+	Body
+```
+{
+    "name": "morango dmfs",
+    "color": "red",
+    "price": "6.40",
+    "inventory": 6,
+    "melts": false
+}
+```
+
+/widgets/:id
+	Método
+		PUT
+	Headers
+		Authorization: <token>
+		Content-Type: application/json
+	Body
+```
+{
+    "name": "morango DMFS",
+    "color": "blue",
+    "inventory": -1
+}
+```
+
+## Autenticação na API
+
+Todas as rotas realizam checagem do token do usuário, com exceção da rota que fornece o token. O token será fornecido pela rota '/login' usando o médoto POST e passando um json que contenha os dados de login e senha do usuário.
+
+## Inserir um usuário na base de dados
+
+Para inserir o primeiro usuário no MongoDB é necessário seguir os seguintes passos:
+- Iniciar o MongoDB (pular este passo caso o MongoDB já esteja sendo executado)
+```
+$ mongod
+```
+- Abrir shell do MongoDB
+```
+$ mongo
+```
+- Criar a database
+```
+> use widgets-spa-rv
+```
+- Criar a collection de usuário
+```
+> db.createCollection("user")
+```
+- Inserir o primeiro documento
+```
+> db.user.insert({login: "admin", password: "admin", session: "", gravatar: "/admin"})
+```
+- Encerre o mongo
+```
+exit
 ```
