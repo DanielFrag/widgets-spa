@@ -83,72 +83,80 @@ Ao importar o arquivo, será criada uma nova coleção no Postman. Esta coleçã
 ## Rotas
 
 /login
-	Método
-		POST
-	Headers
-		Content-Type: application/json
-	Body
 ```
-{
-	"login": "admin",
-	"password": "admin"
-}
+Método
+	POST
+Headers
+	Content-Type: application/json
+Body
+	{
+		"login": "admin",
+		"password": "admin"
+	}
 ```
 
 /users
-	Método
-		GET
-	Headers
-		Authorization: <token>
+```
+Método
+	GET
+Headers
+	Authorization: <token>
+```
 
 /users/:id
-	Método
-		GET
-	Headers
-		Authorization: <token>
-
-/widgets
-	Método
-		GET
-	Headers
-		Authorization: <token>
-
-/widgets/:id
-	Método
-		GET
-	Headers
-		Authorization: <token>
-
-/widgets
-	Método
-		POST
-	Headers
-		Authorization: <token>
-		Content-Type: application/json
-	Body
 ```
-{
-    "name": "morango dmfs",
-    "color": "red",
-    "price": "6.40",
-    "inventory": 6,
-    "melts": false
-}
+Método
+	GET
+Headers
+	Authorization: <token>
+```
+
+/widgets
+```
+Método
+	GET
+Headers
+	Authorization: <token>
 ```
 
 /widgets/:id
-	Método
-		PUT
-	Headers
-		Authorization: <token>
-		Content-Type: application/json
-	Body
 ```
-{
-    "name": "morango DMFS",
-    "color": "blue",
-    "inventory": -1
-}
+Método
+	GET
+Headers
+	Authorization: <token>
+```
+
+/widgets
+```
+Método
+	POST
+Headers
+	Authorization: <token>
+	Content-Type: application/json
+Body
+	{
+		"name": "morango dmfs",
+		"color": "red",
+		"price": "6.40",
+		"inventory": 6,
+		"melts": false
+	}
+```
+
+/widgets/:id
+```
+Método
+	PUT
+Headers
+	Authorization: <token>
+	Content-Type: application/json
+Body
+	{
+		"name": "morango DMFS",
+		"color": "blue",
+		"inventory": -1
+	}
 ```
 
 ## Autenticação na API
