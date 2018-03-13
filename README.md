@@ -32,7 +32,7 @@ Vale ressaltar que os testes do pacote 'handler' fazem uso de um mock que deve r
 
 Para rodar os testes do pacote de 'infra' são necessárias algumas observações.
 Seus testes fazem acesso real ao Mongo por isso, o mesmo precisa estar rodando.
-Os testes desse pacote incluem e manipulam dados em uma base de teste a ser excluídaquando o teste é concluído. 
+Os testes desse pacote incluem e manipulam dados em uma base de teste a ser excluída quando o teste é concluído. 
 Os testes 'TestUserMGO' e 'TestWidgetMGO' devem ser rodados separadamente, uma vez que cada um deles, ao finalizar, fecha a seção com o banco. Para rodá-los basta navegar até a pasta 'infra' e digitar o comando:
 
 ```
@@ -60,6 +60,8 @@ As seguintes bibliotecas foram usadas neste projeto:
 - github.com/gorilla/context
 - github.com/gorilla/mux
 - github.com/dgrijalva/jwt-go
+- gopkg.in/mgo.v2
+- gopkg.in/mgo.v2/bson
 
 ## Rodar a API
 
